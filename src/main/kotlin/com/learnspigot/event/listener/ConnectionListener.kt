@@ -19,7 +19,7 @@ import org.bukkit.potion.PotionEffectType
 
 class ConnectionListener : Listener {
 
-    private val LOBBY_SPAWN = Location(Bukkit.getWorld("world"), -3.5, 63.0, 19.5)
+    private val LOBBY_SPAWN = Location(Bukkit.getWorld("world"), -22.5, 100.0, 4.5)
 
     @EventHandler
     fun onPlayerJoin(e: PlayerJoinEvent) {
@@ -33,10 +33,10 @@ class ConnectionListener : Listener {
             inventory.clear()
      //       inventory.helmet = ItemStack(Material.CARVED_PUMPKIN)
 
-//            delay(20) {
-//                NPC.sendAll(this@apply)
-//                TablistManager.set(this@apply)
-//            }//
+            delay(20) {
+                NPC.sendAll(this@apply)
+                TablistManager.set(this@apply)
+            }//
         }
     }
 

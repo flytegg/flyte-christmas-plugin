@@ -4,6 +4,7 @@ plugins {
     application
     kotlin("jvm") version "1.9.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.github.patrick.remapper") version "1.4.0"
     id("io.papermc.paperweight.userdev") version "1.5.5"
     id("xyz.jpenilla.run-paper") version "2.1.0"
 }
@@ -25,6 +26,12 @@ dependencies {
 tasks {
     build {
         dependsOn(shadowJar)
+    }
+
+    remap {
+        version.set("1.20.1")
+        archiveName.set("${project.name}-${project.version}-remapped.jar")
+        mustRunAfter(build)
     }
 
     assemble {
