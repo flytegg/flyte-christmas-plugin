@@ -33,10 +33,10 @@ class ConnectionListener : Listener {
             inventory.clear()
      //       inventory.helmet = ItemStack(Material.CARVED_PUMPKIN)
 
-            delay(20) {
-                NPC.sendAll(this@apply)
-                TablistManager.set(this@apply)
-            }
+//            delay(20) {
+//                NPC.sendAll(this@apply)
+//                TablistManager.set(this@apply)
+//            }
         }
     }
 
