@@ -1,6 +1,7 @@
 package com.learnspigot.event.visual
 
-import com.learnspigot.event.Event
+import com.learnspigot.event.ChristmasEvent
+import com.learnspigot.event.util.CHRISTMAS_RED
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import gg.flyte.twilight.string.smallText
@@ -24,7 +25,7 @@ object TablistManager {
 
     private val fakePlayers = mutableListOf<ServerPlayer>().apply {
         val server = (Bukkit.getServer() as CraftServer).server
-        val world = (Event.CAMPUS as CraftWorld).handle
+        val world = (ChristmasEvent.WORLD as CraftWorld).handle
         val property = Property(
             "textures",
             "ewogICJ0aW1lc3RhbXAiIDogMTYwNzcxNjUwMzI2OCwKICAicHJvZmlsZUlkIiA6ICJlYjIwYWVkYTRiYTM0NzVmOTczZGNmZjkzNTE2OGZhYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJTa3lGYWxsZWVlIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2IxYmI1NzdkZjg3OGU4NzY1YzhjMDZmZWVlY2Y5ODA3OTRlZWE5ODI4MDFjMjc5NWI4MjY4ZjA5MzI2MGEwZTAiCiAgICB9CiAgfQp9",
@@ -75,7 +76,7 @@ object TablistManager {
 
         board.registerNewTeam("op").apply {
             setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER)
-            prefix(Component.text("Staff ".smallText()).color(NamedTextColor.RED).decorate(TextDecoration.BOLD))
+            prefix(Component.text("Staff ".smallText()).color(CHRISTMAS_RED).decorate(TextDecoration.BOLD))
             color(NamedTextColor.RED)
         }
 

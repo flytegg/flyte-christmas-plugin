@@ -1,6 +1,6 @@
 package com.learnspigot.event.util.npc
 
-import com.learnspigot.event.Event
+import com.learnspigot.event.ChristmasEvent
 import com.learnspigot.event.util.Skin
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
@@ -64,7 +64,7 @@ class NPC(
         }
 
         if (followPlayer) {
-            runTaskTimer(Event.INSTANCE, 5, 5)
+            runTaskTimer(ChristmasEvent.INSTANCE, 5, 5)
         }
     }
 
