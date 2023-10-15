@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
     implementation("gg.flyte:twilight:1.0.10")
 }
 
@@ -45,7 +45,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.20.2")
+        minecraftVersion("1.20.1")
     }
 }
 
