@@ -1,9 +1,9 @@
-package com.learnspigot.event
+package com.learnspigot.christmas.event
 
-import com.learnspigot.event.listener.ConnectionListener
-import com.learnspigot.event.util.Skin
-import com.learnspigot.event.util.npc.NPC
-import com.learnspigot.event.util.npc.NPCListener
+import com.learnspigot.christmas.event.listener.ConnectionListener
+import com.learnspigot.christmas.event.util.Skin
+import com.learnspigot.christmas.event.util.npc.NPC
+import com.learnspigot.christmas.event.util.npc.NPCListener
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
 import org.bukkit.Location

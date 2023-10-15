@@ -1,4 +1,4 @@
-package com.learnspigot.event.util
+package com.learnspigot.christmas.event.util
 
 import net.kyori.adventure.text.format.TextColor
 

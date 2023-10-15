@@ -1,7 +1,7 @@
-package com.learnspigot.event.util.npc
+package com.learnspigot.christmas.event.util.npc
 
-import com.learnspigot.event.ChristmasEvent
-import com.learnspigot.event.util.Skin
+import com.learnspigot.christmas.event.ChristmasEvent
+import com.learnspigot.christmas.event.util.Skin
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import net.minecraft.network.protocol.game.*
