@@ -1,8 +1,6 @@
-name: TestPlugin
+name: Event
 version: 1.0
-main: com.example.test.TestPlugin
+main: com.learnspigot.event.Event
 api-version: 1.20
-description: Super cool test plugin!
-author: Stephen
-contributors: [Brandon, Josh]
-website: https://mcworkshop.org
+contributors: [Stephen, Josh]
+website: https://learnspigot.com
