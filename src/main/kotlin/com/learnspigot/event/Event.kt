@@ -1,11 +1,51 @@
 package com.learnspigot.event
 
+import com.google.gson.Gson
+import com.learnspigot.event.listener.ConnectionListener
+import com.learnspigot.event.util.Skin
+import com.learnspigot.event.util.npc.NPC
+import com.learnspigot.event.util.npc.NPCListener
+import gg.flyte.twilight.twilight
+import org.bukkit.Bukkit
+import org.bukkit.Location
+import org.bukkit.World
 import org.bukkit.plugin.java.JavaPlugin
 
 class Event : JavaPlugin() {
 
+    companion object {
+        lateinit var INSTANCE: Event
+        lateinit var CAMPUS: World
+    }
+
     override fun onEnable() {
-        println("Wow, it worked!")
+        INSTANCE = this
+        CAMPUS = Bukkit.getWorld("world")!!
+
+        twilight(this) {
+//            mongo{
+//                uri = mongoUri
+//                database = mongoDatabase
+//            }
+        }
+
+        Bukkit.getPluginManager().apply {
+            registerEvents(ConnectionListener(), this@Event)
+            registerEvents(NPCListener(), this@Event)
+
+        }
+
+
+
+        // TEST REMOVE
+        NPC(
+            Location(CAMPUS, -3.5, 63.0, 21.5),
+            Skin(
+                "ewogICJ0aW1lc3RhbXAiIDogMTY2MzcyMzgwNTQ4NywKICAicHJvZmlsZUlkIiA6ICIwNTkyNTIxZGNjZWE0NzRkYjE0M2NmMDg2MDA1Y2FkNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJwdXIyNCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9kMGNhM2VlNGJlYTgxNTA5ZTQ5MjI5ODVlY2YyNmQ0N2MwODVkYWY1ODUzMDc1MDBlMTZhYmVlMDE5YjlkZTUxIgogICAgfQogIH0KfQ==",
+                "YIS3T3N/jF+T8SpPDS/bCZHly8GFmmDiahpUgaJedKNXfcgaUDjIl6mTCiMQITYFdM0Q3UKNKr9LIt7rSgwPUjCEdmjwfpBG0yRAXoQ9rG30JdtvzpKqNGLU8t9LQfkHfqah9ti3T9gh6n6G4KIdTyBWW+xVc1Nb/y5WU0PtnK/W7274hKvlrxswfxqcO4M67PqutFHwkk3F0FyG5b2HfDpUdM3DMP9qDwGA2OlhmZLuX4R5/aLvGAfetl3YHzFVfZggZOtEkaTetv42gXHnxfH9UKkHrzwtcQ5ms75Jz2Nv1oJnca6Ya6bEEfeo9dRQajzJOAGrTlnPSvatEKSqwmV3md/J2J0cq37koUvkWBCkeKthzpkZX+CqANyGmU7BzV9GvL7Lgre3vx9GHIfdafbMk/75LL7xco/nsO5ZHoO0v5cxRP3eiW/sSnaDwpfTMUyiWeqdFU+SeJIALtcYbV398m0sCd5yruXDk7iqS12oTMoHNHDKf8qFzev+RA6s8l/Ct9dAT/DxK5Cy2nf9tNpqzSKVZRx501cECI+JNsNbIMaXE8m0lORaek+vd0jDN8LNoTN3mXZn5zHTxp49dtp9t0NfcXCIfUyKL6J8M8S8MtWvzjgpgiS95o7OHMgPhJS4BUK9Xogitn7Lrt0qyclH//JteKHmY3FWgoAxOVA="),
+            true,
+            "test")
+        // TEST REMOVE
     }
 
     override fun onDisable() {
