@@ -36,6 +36,10 @@ tasks {
         options.release.set(17)
     }
 
+    shadowJar {
+        archiveFileName.set("ls-christmas-plugin.jar")
+    }
+
     javadoc {
         options.encoding = Charsets.UTF_8.name()
     }
