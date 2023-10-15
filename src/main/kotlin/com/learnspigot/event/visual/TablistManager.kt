@@ -3,6 +3,7 @@ package com.learnspigot.event.visual
 import com.learnspigot.event.Event
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
+import gg.flyte.twilight.string.smallText
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextDecoration
@@ -74,7 +75,7 @@ object TablistManager {
 
         board.registerNewTeam("op").apply {
             setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER)
-            prefix(Component.text("Staff").color(NamedTextColor.RED).decorate(TextDecoration.BOLD))
+            prefix(Component.text("Staff ".smallText()).color(NamedTextColor.RED).decorate(TextDecoration.BOLD))
             color(NamedTextColor.RED)
         }
 
