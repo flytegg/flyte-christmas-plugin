@@ -44,7 +44,7 @@ remap.mustRunAfter(build)
 tasks {
     remap {
         version.set("1.20.1")
-        archiveName.set("${project.name}-${project.version}-remapped.jar")
+        archiveName.set("ls-christmas-plugin.jar")
         mustRunAfter build
     }
 }
