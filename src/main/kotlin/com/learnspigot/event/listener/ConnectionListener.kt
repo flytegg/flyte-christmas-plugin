@@ -36,7 +36,7 @@ class ConnectionListener : Listener {
 //            delay(20) {
 //                NPC.sendAll(this@apply)
 //                TablistManager.set(this@apply)
-//            }
+//            }//
         }
     }
 
