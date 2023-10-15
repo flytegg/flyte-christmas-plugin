@@ -1,8 +1,8 @@
-package com.example.test
+package com.learnspigot.event
 
 import org.bukkit.plugin.java.JavaPlugin
 
-class TestPlugin : JavaPlugin() {
+class Event : JavaPlugin() {
 
     override fun onEnable() {
         println("Wow, it worked!")
