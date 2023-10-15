@@ -7,7 +7,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractEntityEvent
 import org.bukkit.event.world.ChunkLoadEvent
 
-class NPCListener : Listener {
+object NPCListener : Listener {
 
     @EventHandler
     fun onPlayerInteractEntity(e: PlayerInteractEntityEvent) {
