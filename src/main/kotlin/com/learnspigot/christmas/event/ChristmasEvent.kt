@@ -1,12 +1,9 @@
 package com.learnspigot.christmas.event
 
 import com.learnspigot.christmas.event.listener.ConnectionListener
-import com.learnspigot.christmas.event.util.Skin
-import com.learnspigot.christmas.event.util.npc.NPC
 import com.learnspigot.christmas.event.util.npc.NPCListener
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
-import org.bukkit.Location
 import org.bukkit.Server
 import org.bukkit.World
 import org.bukkit.event.Listener
@@ -32,13 +29,10 @@ class ChristmasEvent : JavaPlugin() {
 //            }
         }
 
-        registerEventListeners(
-            ConnectionListener,
-            NPCListener
-        )
+        registerEventListeners()
 
         // TEST REMOVE
-        NPC(
+        /*NPC(
             Location(WORLD, -22.5, 100.0, 4.5),
             Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTY2MzcyMzgwNTQ4NywKICAicHJvZmlsZUlkIiA6ICIwNTkyNTIxZGNjZWE0NzRkYjE0M2NmMDg2MDA1Y2FkNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJwdXIyNCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9kMGNhM2VlNGJlYTgxNTA5ZTQ5MjI5ODVlY2YyNmQ0N2MwODVkYWY1ODUzMDc1MDBlMTZhYmVlMDE5YjlkZTUxIgogICAgfQogIH0KfQ==",
@@ -46,7 +40,7 @@ class ChristmasEvent : JavaPlugin() {
             ),
             true,
             "test"
-        )
+        )*/
         // TEST REMOVE
     }
 
@@ -54,8 +48,9 @@ class ChristmasEvent : JavaPlugin() {
 
     }
 
-    private fun registerEventListeners(vararg eventListeners: Listener) {
-        eventListeners.forEach { SERVER.pluginManager.registerEvents(it, INSTANCE) }
+    private fun registerEventListeners() {
+        ConnectionListener
+        NPCListener
     }
 
 }

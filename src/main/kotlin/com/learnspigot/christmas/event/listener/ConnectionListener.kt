@@ -3,53 +3,49 @@ package com.learnspigot.christmas.event.listener
 import com.learnspigot.christmas.event.ChristmasEvent
 import com.learnspigot.christmas.event.util.npc.NPC
 import com.learnspigot.christmas.event.visual.TablistManager
+import gg.flyte.twilight.event.event
 import gg.flyte.twilight.scheduler.delay
 import org.bukkit.GameMode
 import org.bukkit.Location
-import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerResourcePackStatusEvent
-import org.bukkit.potion.PotionEffect
-import org.bukkit.potion.PotionEffectType
 
-object ConnectionListener : Listener {
+object ConnectionListener {
 
     private val spawnLocation = Location(ChristmasEvent.WORLD, -22.5, 100.0, 4.5)
 
-    @EventHandler
-    fun onPlayerJoin(e: PlayerJoinEvent) {
-        e.joinMessage(null)
+    init {
+        event<PlayerJoinEvent> {
+            joinMessage(null)
 
-        e.player.apply {
-            gameMode = GameMode.ADVENTURE
-            foodLevel = 20
-            health = 20.0
-            //addPotionEffect(PotionEffect(PotionEffectType.NIGHT_VISION, Int.MAX_VALUE, 10, false, false))
-            teleport(spawnLocation)
+            player.apply {
+                gameMode = GameMode.ADVENTURE
+                foodLevel = 20
+                health = 20.0
+                //addPotionEffect(PotionEffect(PotionEffectType.NIGHT_VISION, Int.MAX_VALUE, 10, false, false))
+                teleport(spawnLocation)
 
-            inventory.clear()
-            //inventory.helmet = ItemStack(Material.CARVED_PUMPKIN)
+                inventory.clear()
+                //inventory.helmet = ItemStack(Material.CARVED_PUMPKIN)
 
-            delay(20) {
-                NPC.sendAll(this@apply)
-                TablistManager.set(this@apply)
+                delay(20) {
+                    NPC.sendAll(this@apply)
+                    TablistManager.set(this@apply)
+                }
             }
         }
-    }
 
-    @EventHandler
-    fun onPlayerResourcePackStatus(e: PlayerResourcePackStatusEvent) {
+        event<PlayerResourcePackStatusEvent> {
 
-    }
+        }
 
-    @EventHandler
-    fun onPlayerQuit(e: PlayerQuitEvent) {
-        e.quitMessage(null)
+        event<PlayerQuitEvent> {
+            quitMessage(null)
 
-        e.player.apply {
-            TablistManager.remove(this)
+            player.apply {
+                TablistManager.remove(this)
+            }
         }
     }
 

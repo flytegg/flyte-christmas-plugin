@@ -1,17 +1,16 @@
 package com.learnspigot.christmas.event.util.npc
 
+import gg.flyte.twilight.event.event
 import org.bukkit.Bukkit
-import org.bukkit.entity.EntityType
-import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener
+import org.bukkit.event.EventPriority
 import org.bukkit.event.player.PlayerInteractEntityEvent
-import org.bukkit.event.world.ChunkLoadEvent
 
-object NPCListener : Listener {
+object NPCListener {
 
-    @EventHandler
-    fun onPlayerInteractEntity(e: PlayerInteractEntityEvent) {
-        Bukkit.getPluginManager().callEvent(NPCClickEvent(e.player, NPC.npcs[e.rightClicked.uniqueId] ?: return))
+    init {
+        event<PlayerInteractEntityEvent>(EventPriority.HIGH) {
+            Bukkit.getPluginManager().callEvent(NPCClickEvent(player, NPC.npcs[rightClicked.uniqueId] ?: return@event))
+        }
     }
 
 }
