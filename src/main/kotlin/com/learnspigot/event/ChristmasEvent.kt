@@ -1,12 +1,13 @@
-package com.learnspigot.christmas.event
+package com.learnspigot.event
 
-import com.learnspigot.christmas.event.listener.ConnectionListener
-import com.learnspigot.christmas.event.util.npc.NPCListener
+import com.learnspigot.event.engine.GameCommand
+import com.learnspigot.event.listener.ConnectionListener
+import com.learnspigot.event.util.MapLocation
+import com.learnspigot.event.util.npc.NPCListener
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.World
-import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 
 class ChristmasEvent : JavaPlugin() {
@@ -15,21 +16,27 @@ class ChristmasEvent : JavaPlugin() {
         lateinit var INSTANCE: ChristmasEvent
         lateinit var SERVER: Server
         lateinit var WORLD: World
+        lateinit var LOBBY_SPAWN: MapLocation
     }
 
     override fun onEnable() {
         INSTANCE = this
         SERVER = server
         WORLD = Bukkit.getWorld("world")!!
+        LOBBY_SPAWN = MapLocation(-134, 80, 78, 90, 0)
 
-        twilight(this) {
-//            mongo{
-//                uri = mongoUri
-//                database = mongoDatabase
-//            }
-        }
+        twilight(this) {}
 
         registerEventListeners()
+
+        Bukkit.getPluginCommand("game")!!.apply {
+            val gameCommand = GameCommand()
+            setExecutor(gameCommand)
+            tabCompleter = gameCommand
+        }
+
+
+
 
         // TEST REMOVE
         /*NPC(

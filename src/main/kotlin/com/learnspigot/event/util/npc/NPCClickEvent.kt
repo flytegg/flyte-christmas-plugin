@@ -1,4 +1,4 @@
-package com.learnspigot.christmas.event.util.npc
+package com.learnspigot.event.util.npc
 
 import org.bukkit.entity.Player
 import org.bukkit.event.Event

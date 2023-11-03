@@ -1,7 +1,7 @@
-package com.learnspigot.christmas.event.visual
+package com.learnspigot.event.visual
 
-import com.learnspigot.christmas.event.ChristmasEvent
-import com.learnspigot.christmas.event.util.CHRISTMAS_RED
+import com.learnspigot.event.ChristmasEvent
+import com.learnspigot.event.util.CHRISTMAS_RED
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import gg.flyte.twilight.string.smallText
