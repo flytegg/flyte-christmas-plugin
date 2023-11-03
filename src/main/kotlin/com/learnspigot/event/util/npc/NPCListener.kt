@@ -1,4 +1,4 @@
-package com.learnspigot.christmas.event.util.npc
+package com.learnspigot.event.util.npc
 
 import gg.flyte.twilight.event.event
 import org.bukkit.Bukkit
