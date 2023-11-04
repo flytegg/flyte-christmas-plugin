@@ -106,6 +106,8 @@ object GameEngine {
 
     fun onPlayerQuit(player: Player) {
         game?.onPlayerQuit(player)
+
+        // Check here to see if too many players left for game to continue running
     }
 
 }
