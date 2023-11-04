@@ -1,12 +1,18 @@
 package com.learnspigot.event.engine
 
+import gg.flyte.twilight.event.TwilightListener
 import org.bukkit.entity.Player
-import org.bukkit.event.Listener
 import org.bukkit.scheduler.BukkitTask
+import java.util.*
 
-abstract class Game : Listener {
+abstract class Game {
+
+    var state = GameState.COUNTDOWN
 
     val tasks = mutableListOf<BukkitTask>()
+    val events = mutableListOf<TwilightListener>()
+
+    val points = mutableMapOf<UUID, Int>()
 
     abstract fun events()
 
