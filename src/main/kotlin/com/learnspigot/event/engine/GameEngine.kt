@@ -1,6 +1,7 @@
 package com.learnspigot.event.engine
 
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
+import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.scheduler.repeat
 import gg.flyte.twilight.time.TimeUnit
@@ -59,6 +60,7 @@ object GameEngine {
 
             if (countdown == 0) {
                 cancel()
+                game!!.state = GameState.ACTIVE
                 game!!.start()
             }
 
@@ -82,6 +84,12 @@ object GameEngine {
         game?.let {
             it.stop()
             it.tasks.forEach(BukkitTask::cancel)
+            it.events.forEach(TwilightListener::unregister)
+            it.points.forEach { (key, value) ->
+                points.merge(key, value) { existingValue, newValue ->
+                    existingValue + newValue
+                }
+            }
             game = null
         }
 
