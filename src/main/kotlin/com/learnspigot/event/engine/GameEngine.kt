@@ -72,7 +72,11 @@ object GameEngine {
      * Stops the game, teleporting online players to the lobby, canceling the countdown task, and ending the game.
      */
     fun stop() {
-        Bukkit.getOnlinePlayers().applyForEach { teleport(LOBBY_SPAWN) }
+        Bukkit.getOnlinePlayers().applyForEach {
+            teleport(LOBBY_SPAWN)
+            clearTitle()
+            sendActionBar(empty())
+        }
 
         type = null
 

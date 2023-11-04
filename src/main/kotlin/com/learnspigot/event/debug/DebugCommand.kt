@@ -15,7 +15,7 @@ object DebugCommand {
     // temp, no error checking
     @Subcommand("tp")
     fun tp(sender: CommandSender, world: String) {
-        Bukkit.createWorld(WorldCreator("world"))
+        Bukkit.createWorld(WorldCreator("build"))
         (sender as Player).teleport(Bukkit.getWorld(world)!!.spawnLocation)
     }
 
