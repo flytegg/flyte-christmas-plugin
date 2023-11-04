@@ -1,14 +1,20 @@
 package com.learnspigot.event
 
+import com.learnspigot.event.debug.DebugCommand
 import com.learnspigot.event.engine.GameCommand
+import com.learnspigot.event.engine.GameType
 import com.learnspigot.event.listener.ConnectionListener
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.npc.NPCListener
+import gg.flyte.twilight.extension.enumValue
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.World
 import org.bukkit.plugin.java.JavaPlugin
+import revxrsal.commands.bukkit.BukkitCommandHandler
+import revxrsal.commands.exception.CommandErrorException
+import revxrsal.commands.ktx.autoCompleter
 
 class ChristmasEvent : JavaPlugin() {
 
@@ -27,15 +33,8 @@ class ChristmasEvent : JavaPlugin() {
 
         twilight(this) {}
 
-        registerEventListeners()
-
-        Bukkit.getPluginCommand("game")!!.apply {
-            val gameCommand = GameCommand()
-            setExecutor(gameCommand)
-            tabCompleter = gameCommand
-        }
-
-
+        listeners()
+        commands()
 
         // TEST REMOVE
         /*NPC(
@@ -54,7 +53,26 @@ class ChristmasEvent : JavaPlugin() {
 
     }
 
-    private fun registerEventListeners() {
+    private fun commands() {
+        BukkitCommandHandler.create(this).apply {
+            register(
+                GameCommand,
+                DebugCommand
+            )
+
+            registerValueResolver(GameType::class.java) {
+                enumValue<GameType>(it.pop()) ?: throw CommandErrorException("Invalid game type!", it.pop())
+            }
+
+            autoCompleter {
+                registerParameterSuggestions(GameType::class.java) { _, _, _ ->
+                    GameType.entries.map { it.name.uppercase() }
+                }
+            }
+        }
+    }
+
+    private fun listeners() {
         ConnectionListener
         NPCListener
     }
