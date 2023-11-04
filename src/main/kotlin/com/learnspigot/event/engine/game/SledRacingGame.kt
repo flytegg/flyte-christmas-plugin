@@ -3,6 +3,7 @@ package com.learnspigot.event.engine.game
 import com.learnspigot.event.ChristmasEvent
 import com.learnspigot.event.engine.Game
 import com.learnspigot.event.util.MapLocation
+import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.getBlocks
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -10,6 +11,7 @@ import org.bukkit.entity.Boat
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.util.BoundingBox
+import org.spigotmc.event.entity.EntityDismountEvent
 
 class SledRacingGame : Game() {
 
@@ -36,10 +38,17 @@ class SledRacingGame : Game() {
 
     }
 
+    override fun events() {
+        event<EntityDismountEvent> {
+            Bukkit.broadcastMessage("sup")
+        }
+    }
+
     override fun start() {
         STARTING_WALL.getBlocks(ChristmasEvent.WORLD).forEach {
             it.type = Material.AIR
         }
+
 
 
     }

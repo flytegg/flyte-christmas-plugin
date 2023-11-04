@@ -12,6 +12,10 @@ class MusicalMinecartsGame : Game() {
 
     private lateinit var music: RadioSongPlayer
 
+    override fun events() {
+
+    }
+
     override fun start() {
         val song = NBSSongType.entries.random()
         music = RadioSongPlayer(song.song)

@@ -1,11 +1,14 @@
 package com.learnspigot.event.engine
 
 import org.bukkit.entity.Player
+import org.bukkit.event.Listener
 import org.bukkit.scheduler.BukkitTask
 
-abstract class Game {
+abstract class Game : Listener {
 
     val tasks = mutableListOf<BukkitTask>()
+
+    abstract fun events()
 
     abstract fun start()
 
