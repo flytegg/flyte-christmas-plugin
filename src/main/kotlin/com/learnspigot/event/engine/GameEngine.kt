@@ -30,7 +30,7 @@ object GameEngine {
     fun start() {
         Bukkit.getOnlinePlayers().applyForEach { teleport(this@GameEngine.type!!.spawns.random()) }
 
-        game = type!!.clazz.getDeclaredConstructor().newInstance()
+        game = (type!!.clazz.getDeclaredConstructor().newInstance() as Game).apply { events() }
 
         Bukkit.broadcast(
             text().append(
