@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.9.0-Beta'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
     id "io.github.patrick.remapper" version "1.4.0"
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id "io.papermc.paperweight.userdev" version "1.5.5"
@@ -56,17 +56,20 @@ tasks {
     // Configure reobfJar to run when invoking the build task
     assemble.dependsOn(reobfJar)
 
-    processResources {
-        def props = [
-                "name"       : "ChristmasEvent",
-                "version"    : "1",
-                "description": "Core plugin",
-                "apiVersion" : "1.20"
-        ]
-        inputs.properties(props)
-        filesMatching("plugin.yml") {
-            expand(props)
-        }
+    shadowJar {
+        def pack = "com.learnspigot.event.shaded."
+        relocate("gg.flyte.twilight", "${pack}twilight")
+        relocate("com.github.supergluelib.lamp", "${pack}lamp.wrapper")
+        relocate("revxrsal.commands", "${pack}lamp")
+        relocate("com.google.gson", "${pack}gson")
+        relocate("kotlin", "${pack}kotlin")
+        relocate("com.mongodb", "${pack}mongodb")
+        relocate("io.github.cdimascio.dotenv", "${pack}dotenv")
+        relocate("net.wesjd.anvilgui", "${pack}anvilgui")
+        relocate("org.bson", "${pack}bson")
+        relocate("org.bson", "${pack}bson")
+        relocate("org.intellij.lang.annotations", "${pack}jetbrains.annotations")
+        relocate("org.jetbrains.annotations", "${pack}jetbrains.annotations")
     }
 }
 
