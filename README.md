@@ -12,5 +12,9 @@ many more things to do, including:
 - add a game countdown
 - make NPCs work and add leaderboard NPCs
 - make sidebar
+- lobby games
+- decorate tree commands
+
+**I HAVE PROVIDED THE MAP USED FOR TESTING GAMES IN THE RUN FOLDER. REMEMBER YOU CAN RUN THE SERVER USING RUN SERVER TASK IN THE GRADLE PANE**
 
 enjoy!
