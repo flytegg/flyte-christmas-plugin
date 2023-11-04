@@ -1,7 +1,6 @@
 package com.learnspigot.event.engine
 
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
-import com.learnspigot.event.engine.exception.InvalidGameTypeException
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.scheduler.repeat
 import gg.flyte.twilight.time.TimeUnit
@@ -27,23 +26,19 @@ object GameEngine {
 
     /**
      * Initiates the game, including player teleportation, game initialization, and countdown before starting.
-     *
-     * @throws InvalidGameTypeException if the game type is not set.
      */
     fun start() {
-        val type = this.type ?: throw InvalidGameTypeException()
+        Bukkit.getOnlinePlayers().applyForEach { teleport(this@GameEngine.type!!.spawns.random()) }
 
-        Bukkit.getOnlinePlayers().applyForEach { teleport(type.spawns.random()) }
-
-        game = type.clazz.getDeclaredConstructor().newInstance()
+        game = type!!.clazz.getDeclaredConstructor().newInstance()
 
         Bukkit.broadcast(
             text().append(
                 CHAT_SPLITTER,
                 newline(),
-                type.title, text(" - Game starting!"),
+                type!!.title, text(" - Game starting!"),
                 newline(),
-                type.description,
+                type!!.description,
                 newline(),
                 CHAT_SPLITTER
             ).build()
