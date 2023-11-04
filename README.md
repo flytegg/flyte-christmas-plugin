@@ -9,7 +9,6 @@ super easy:
 note: encouraged to draw on the utils provided by Twilight, and also NoteblockAPI is there to play music with 5 Christmas songs already provided in the run folder
 
 many more things to do, including:
-- add a game countdown
 - make NPCs work and add leaderboard NPCs
 - make sidebar
 - lobby games

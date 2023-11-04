@@ -1,6 +1,7 @@
 package com.learnspigot.event.engine
 
 import com.learnspigot.event.engine.game.MusicalMinecartsGame
+import com.learnspigot.event.engine.game.SledRacingGame
 import com.learnspigot.event.util.MapLocation
 import net.kyori.adventure.text.Component
 import org.bukkit.GameMode
@@ -13,7 +14,7 @@ enum class GameType(
     val clazz: Class<out Game>,
     val region: BoundingBox,
     val spawns: List<MapLocation>,
-    val spectatorSpawn: MapLocation
+    val spectatorSpawn: MapLocation?
 ) {
 
     MUSICAL_MINECARTS(
@@ -29,6 +30,23 @@ enum class GameType(
             MapLocation(-138, 80, 66)
         ),
         MapLocation(-149, 80, 65, -90, 0)
+    ),
+
+    SLED_RACING(
+        Component.text("Sled Racing"),
+        Component.text("test game2"),
+        GameMode.ADVENTURE,
+        SledRacingGame::class.java,
+        BoundingBox.of(
+            MapLocation(-133, 83, 95),
+            MapLocation(-174, 79, 103)
+        ),
+        listOf(
+            MapLocation(-133, 80, 100, 90, 0)
+        ),
+        MapLocation(-151, 80, 92)
     )
+
+
 
 }
