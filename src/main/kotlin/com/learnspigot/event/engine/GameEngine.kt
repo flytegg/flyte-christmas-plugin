@@ -29,6 +29,8 @@ object GameEngine {
             .appendNewline()
             .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))
             .build())
+
+        game!!.start()
     }
 
     fun stop() {

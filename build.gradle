@@ -39,6 +39,7 @@ dependencies {
     implementation "org.mongodb:mongodb-driver-sync:4.9.0"
     implementation "gg.flyte:twilight:1.0.18"
     implementation "com.github.SuperGlueLib:LampWrapper:709c323c17"
+    compileOnly "com.github.koca2000:NoteBlockAPI:1.6.2"
 }
 
 build.dependsOn(shadowJar)

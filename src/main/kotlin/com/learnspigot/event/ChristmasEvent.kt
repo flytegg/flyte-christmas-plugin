@@ -37,7 +37,6 @@ class ChristmasEvent : JavaPlugin() {
 
 
 
-
         // TEST REMOVE
         /*NPC(
             Location(WORLD, -22.5, 100.0, 4.5),
