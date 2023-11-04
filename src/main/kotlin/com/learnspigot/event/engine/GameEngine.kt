@@ -101,7 +101,7 @@ object GameEngine {
 
     fun onPlayerJoin(player: Player) {
         points.getOrPut(player.uniqueId) { 1 }
-        game?.onPlayerJoin(player)
+        game?.apply { onPlayerJoin(player) } ?: player.teleport(LOBBY_SPAWN)
     }
 
     fun onPlayerQuit(player: Player) {
