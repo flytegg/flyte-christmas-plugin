@@ -1,4 +1,4 @@
-name: Event
+name: ChristmasEvent
 version: 1.0
 main: com.learnspigot.event.ChristmasEvent
 api-version: 1.20
