@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.TextDecoration
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
+import org.bukkit.scheduler.BukkitTask
 import java.util.*
 
 object GameEngine {
@@ -21,11 +22,13 @@ object GameEngine {
             it.teleport(type!!.spawns.random())
         }
 
-        Bukkit.broadcast(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH)
-                .appendNewline()
-                .append(type!!.title).append(Component.text(" game starte")
-                .appendNewline()
-                .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))))
+        Bukkit.broadcast(Component.text()
+            .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))
+            .appendNewline()
+            .append(type!!.title).append(Component.text(" game started"))
+            .appendNewline()
+            .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))
+            .build())
     }
 
     fun stop() {
@@ -34,14 +37,19 @@ object GameEngine {
         }
 
         type = null
-        game!!.stop()
-        game = null
+        game!!.run {
+            stop()
+            tasks.forEach(BukkitTask::cancel)
+            game = null
+        }
 
-        Bukkit.broadcast(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH)
+        Bukkit.broadcast(Component.text()
+            .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))
             .appendNewline()
             .append(Component.text("game ended"))
             .appendNewline()
-            .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH)))
+            .append(Component.text("                                                                               ").decorate(TextDecoration.STRIKETHROUGH))
+            .build())
     }
 
     fun onPlayerJoin(player: Player) {
