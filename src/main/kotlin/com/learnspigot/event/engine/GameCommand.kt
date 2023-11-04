@@ -1,5 +1,6 @@
 package com.learnspigot.event.engine
 
+import com.learnspigot.event.engine.GameEngine.countdownTask
 import com.learnspigot.event.engine.GameEngine.game
 import gg.flyte.twilight.extension.enumValue
 import net.kyori.adventure.text.Component
@@ -63,7 +64,7 @@ class GameCommand : CommandExecutor, TabCompleter {
                 GameEngine.start()
             }
             "stop" -> {
-                if (game == null) {
+                if (game == null && countdownTask == null) {
                     sender.sendMessage(Component.text("There is no game to stop.").color(NamedTextColor.RED))
                     return false
                 }
