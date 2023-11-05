@@ -142,17 +142,15 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-        inMinecart.applyForEach { leaveVehicle() }
-        minecarts.applyForEach { remove() }
-        minecarts.clear()
-
         if (alive.size <= 1) {
             music.destroy()
             GameEngine.stop()
-            alive.applyForEach { teleport(ChristmasEvent.LOBBY_SPAWN) }
         } else {
             newRound()
         }
+
+        minecarts.applyForEach { remove() }
+        minecarts.clear()
     }
 
     override fun stop() {
