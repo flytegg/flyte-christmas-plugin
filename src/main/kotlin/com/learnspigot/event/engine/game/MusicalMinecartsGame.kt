@@ -2,7 +2,6 @@ package com.learnspigot.event.engine.game
 
 import com.learnspigot.event.ChristmasEvent
 import com.learnspigot.event.engine.Game
-import com.learnspigot.event.engine.GameEngine
 import com.learnspigot.event.engine.GameType
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.NBSSongType
@@ -112,6 +111,8 @@ class MusicalMinecartsGame : Game() {
                     playSound(Sound.BLOCK_STONE_BUTTON_CLICK_ON)
                 }
 
+                Bukkit.broadcastMessage(inMinecart.toString())
+
                 iter--
             }.also { ticker = it }
         }
@@ -125,9 +126,8 @@ class MusicalMinecartsGame : Game() {
         val iterator = alive.iterator()
         while (iterator.hasNext()) {
             val player = iterator.next()
-            if (player.isInsideVehicle && player.vehicle!!.type == EntityType.MINECART) {
+            if (player.vehicle?.type == EntityType.MINECART) {
                 points[player.uniqueId] = points.getOrDefault(player.uniqueId, 0) + 1
-                player.leaveVehicle()
             } else {
                 player.teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!)
                 player.playSound(Sound.ENTITY_PLAYER_DEATH)
@@ -136,19 +136,28 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-        // CLEAR MINECARTS
-        minecarts.applyForEach {
-            remove()
+// CHECK FOR WINNER
+        var throughToNextRound = 0
+        for (player in alive) {
+            if (player.isInsideVehicle && player.vehicle?.type == EntityType.MINECART) {
+                throughToNextRound++
+            }
         }
-        minecarts.clear()
 
-        // CHECK FOR WINNER
-        if (alive.size <= 1) {
+// CLEAR MINECARTS
+        Bukkit.getWorld("world")?.entities?.forEach { entity ->
+            if (entity.type == EntityType.MINECART) {
+                entity.remove()
+            }
+        }
+
+        if (throughToNextRound <= 1) { // end
             music.destroy()
-            GameEngine.stop()
+            stop()
         } else {
             newRound()
         }
+
     }
 
     override fun stop() {
