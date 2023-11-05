@@ -110,6 +110,8 @@ class MusicalMinecartsGame : Game() {
                 Bukkit.getOnlinePlayers().applyForEach {
                     sendActionBar(component)
                     playSound(Sound.BLOCK_STONE_BUTTON_CLICK_ON)
+
+                    Bukkit.broadcastMessage("${vehicle?.type}")
                 }
 
                 Bukkit.broadcastMessage(inMinecart.toString())
@@ -129,11 +131,14 @@ class MusicalMinecartsGame : Game() {
             val player = iterator.next()
             if (player.vehicle?.type == EntityType.MINECART) {
                 points[player.uniqueId] = points.getOrDefault(player.uniqueId, 0) + 1
+
+                Bukkit.broadcastMessage("$player is not eliminated")
             } else {
                 player.teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!)
                 player.playSound(Sound.ENTITY_PLAYER_DEATH)
-                Bukkit.getOnlinePlayers().applyForEach { sendMessage("$${player.name} was eliminateddd") }
                 iterator.remove()
+
+                Bukkit.broadcastMessage("$${player.name} was eliminateddd")
             }
         }
 
