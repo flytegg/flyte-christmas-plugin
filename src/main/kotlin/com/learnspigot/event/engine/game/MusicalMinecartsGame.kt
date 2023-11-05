@@ -47,7 +47,7 @@ class MusicalMinecartsGame : Game() {
             if (vehicle.type == EntityType.MINECART && entered.type == EntityType.PLAYER) {
                 inMinecart += entered as Player
                 if (inMinecart.size == minecarts.size) {
-                    newRound()
+                    endRound()
                 }
             }
         }
