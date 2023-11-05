@@ -13,6 +13,7 @@ import gg.flyte.twilight.extension.*
 import gg.flyte.twilight.scheduler.delay
 import gg.flyte.twilight.scheduler.repeat
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.Sound
@@ -20,6 +21,7 @@ import org.bukkit.entity.EntityType
 import org.bukkit.entity.Minecart
 import org.bukkit.entity.Player
 import org.bukkit.event.vehicle.VehicleEnterEvent
+import org.bukkit.event.vehicle.VehicleExitEvent
 import org.bukkit.scheduler.BukkitTask
 import org.bukkit.util.BoundingBox
 import kotlin.math.roundToInt
@@ -34,9 +36,9 @@ class MusicalMinecartsGame : Game() {
 
     private lateinit var music: RadioSongPlayer
 
-    private var alive = mutableListOf<Player>()
-    private var inMinecart = mutableListOf<Player>()
-    private var minecarts = mutableListOf<Minecart>()
+    private val alive = mutableListOf<Player>()
+    private val inMinecart = mutableListOf<Player>()
+    private val minecarts = mutableListOf<Minecart>()
 
     private var ticker: BukkitTask? = null
 
@@ -49,16 +51,25 @@ class MusicalMinecartsGame : Game() {
                 }
             }
         }
+
+        events += event<VehicleExitEvent> {
+            isCancelled = true
+        }
     }
 
     override fun start() {
         val song = NBSSongType.entries.random()
         music = RadioSongPlayer(song.song)
         music.repeatMode = RepeatMode.ALL
-
         Bukkit.getOnlinePlayers().forEach(music::addPlayer)
 
-        Bukkit.broadcast(Component.text("now playing ${song.title}"))
+        Bukkit.broadcast(
+            text().append(
+                Component.newline(),
+                text("♫ ").color(NamedTextColor.RED), text("Now playing ${song.title}..."),
+                Component.newline(),
+            ).build()
+        )
 
         alive.addAll(Bukkit.getOnlinePlayers())
 
@@ -127,6 +138,7 @@ class MusicalMinecartsGame : Game() {
             remove()
         }
         minecarts.clear()
+        inMinecart.clear()
 
         // CHECK FOR WINNER
         if (alive.size <= 1) {
