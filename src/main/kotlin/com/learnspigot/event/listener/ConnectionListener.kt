@@ -21,15 +21,15 @@ object ConnectionListener {
 
     init {
         event<PlayerOpEvent> {
-            Bukkit.broadcastMessage("PlayerOpEvent")
+            Bukkit.broadcastMessage("PlayerOpEvent ${offlinePlayer}")
         }
 
         event<PlayerOpChangeEvent> {
-            Bukkit.broadcastMessage("PlayrOpcHANGEEVEBT")
+            Bukkit.broadcastMessage("PlayrOpcHANGEEVEBT ${offlinePlayer}")
         }
 
         event<PlayerDeopEvent> {
-            Bukkit.broadcastMessage("OPlayerdeopevent")
+            Bukkit.broadcastMessage("OPlayerdeopevent ${offlinePlayer}")
         }
 
 
