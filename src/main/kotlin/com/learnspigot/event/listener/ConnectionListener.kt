@@ -19,23 +19,6 @@ import org.bukkit.potion.PotionEffectType
 object ConnectionListener {
 
     init {
-        event<PlayerMainHandInteractEvent> {
-            Bukkit.broadcastMessage("main hand event")
-        }
-
-        event<PlayerOffHandInteractEvent> {
-            Bukkit.broadcastMessage("offhand event")
-        }
-
-
-
-
-
-
-
-
-
-
         event<PlayerJoinEvent> {
             joinMessage(null)
 
