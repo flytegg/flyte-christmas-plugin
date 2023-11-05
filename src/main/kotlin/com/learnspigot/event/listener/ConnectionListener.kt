@@ -4,8 +4,8 @@ import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import com.learnspigot.event.engine.GameEngine
 import com.learnspigot.event.util.npc.NPC
 import com.learnspigot.event.visual.TablistManager
-import gg.flyte.twilight.event.custom.PlayerMainHandInteractEvent
-import gg.flyte.twilight.event.custom.PlayerOffHandInteractEvent
+import gg.flyte.twilight.event.custom.interact.PlayerMainHandInteractEvent
+import gg.flyte.twilight.event.custom.interact.PlayerOffHandInteractEvent
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.scheduler.delay
 import org.bukkit.Bukkit
