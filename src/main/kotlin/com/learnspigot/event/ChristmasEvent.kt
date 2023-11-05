@@ -6,6 +6,7 @@ import com.learnspigot.event.engine.GameType
 import com.learnspigot.event.listener.ConnectionListener
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.npc.NPCListener
+import gg.flyte.twilight.event.disableCustomEventListeners
 import gg.flyte.twilight.extension.enumValue
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
@@ -31,7 +32,8 @@ class ChristmasEvent : JavaPlugin() {
         WORLD = Bukkit.getWorld("world")!!
         LOBBY_SPAWN = MapLocation(-134, 80, 78, 90, 0)
 
-        twilight(this) {}
+        twilight(this)
+        disableCustomEventListeners()
 
         listeners()
         commands()

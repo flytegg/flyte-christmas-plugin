@@ -37,7 +37,7 @@ dependencies {
     paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
     implementation 'net.wesjd:anvilgui:1.7.0-SNAPSHOT'
     implementation "org.mongodb:mongodb-driver-sync:4.9.0"
-    implementation "gg.flyte:twilight:1.0.27"
+    implementation "gg.flyte:twilight:1.0.28"
     implementation "com.github.SuperGlueLib:LampWrapper:709c323c17"
     compileOnly "com.github.koca2000:NoteBlockAPI:1.6.2"
 }

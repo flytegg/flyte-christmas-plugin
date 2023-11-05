@@ -73,9 +73,11 @@ object GameEngine {
      */
     fun stop() {
         Bukkit.getOnlinePlayers().applyForEach {
+            sendMessage("balls")
             teleport(LOBBY_SPAWN)
             clearTitle()
             sendActionBar(empty())
+            sendMessage("ballz")
         }
 
         type = null
