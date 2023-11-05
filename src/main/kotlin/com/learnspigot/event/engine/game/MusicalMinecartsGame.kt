@@ -53,7 +53,9 @@ class MusicalMinecartsGame : Game() {
         }
 
         events += event<VehicleExitEvent> {
-            isCancelled = true
+            if (vehicle.type == EntityType.MINECART && exited.type == EntityType.PLAYER) {
+                inMinecart -= exited as Player
+            }
         }
     }
 
