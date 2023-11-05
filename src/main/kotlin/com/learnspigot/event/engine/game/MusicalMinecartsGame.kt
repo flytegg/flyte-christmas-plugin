@@ -146,16 +146,16 @@ class MusicalMinecartsGame : Game() {
         minecarts.applyForEach { remove() }
         minecarts.clear()
 
-        if (alive.size <= 1) { // end
+        if (alive.size <= 1) {
             music.destroy()
             GameEngine.stop()
+            alive.applyForEach { teleport(ChristmasEvent.LOBBY_SPAWN) }
         } else {
             newRound()
         }
     }
 
     override fun stop() {
-Bukkit.broadcastMessage(minecarts.toString())
         minecarts.applyForEach {
             remove()
         }
