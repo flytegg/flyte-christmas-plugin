@@ -2,6 +2,7 @@ package com.learnspigot.event.engine.game
 
 import com.learnspigot.event.ChristmasEvent
 import com.learnspigot.event.engine.Game
+import com.learnspigot.event.engine.GameEngine
 import com.learnspigot.event.engine.GameType
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.NBSSongType
@@ -153,7 +154,7 @@ class MusicalMinecartsGame : Game() {
 
         if (throughToNextRound <= 1) { // end
             music.destroy()
-            stop()
+            GameEngine.stop()
         } else {
             newRound()
         }
