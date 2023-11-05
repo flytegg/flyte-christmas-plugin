@@ -126,7 +126,7 @@ class MusicalMinecartsGame : Game() {
         Bukkit.getOnlinePlayers().applyForEach { clearActionBar() }
 
         // ADD SCORES AND REMOVE PLAYERS NOT IN MINECART
-        val iterator = alive.iterator()
+        val iterator = alive.iterator()k
         while (iterator.hasNext()) {
             val player = iterator.next()
             if (inMinecart.contains(player)) {
@@ -142,12 +142,12 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
+        inMinecart.applyForEach { leaveVehicle() }
         minecarts.applyForEach { remove() }
         minecarts.clear()
 
         if (alive.size <= 1) { // end
             music.destroy()
-            alive.applyForEach { teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!) }
             GameEngine.stop()
         } else {
             newRound()
@@ -155,7 +155,7 @@ class MusicalMinecartsGame : Game() {
     }
 
     override fun stop() {
-
+Bukkit.broadcastMessage(minecarts.toString())
         minecarts.applyForEach {
             remove()
         }
