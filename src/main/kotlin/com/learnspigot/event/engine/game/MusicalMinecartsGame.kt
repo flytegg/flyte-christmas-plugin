@@ -142,13 +142,12 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-        minecarts.applyForEach {
-            remove()
-        }
+        minecarts.applyForEach { remove() }
         minecarts.clear()
 
         if (alive.size <= 1) { // end
             music.destroy()
+            alive.applyForEach { teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!) }
             GameEngine.stop()
         } else {
             newRound()
@@ -156,6 +155,7 @@ class MusicalMinecartsGame : Game() {
     }
 
     override fun stop() {
+
         minecarts.applyForEach {
             remove()
         }
