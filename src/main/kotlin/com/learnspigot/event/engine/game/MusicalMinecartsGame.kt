@@ -147,16 +147,20 @@ class MusicalMinecartsGame : Game() {
             GameEngine.stop()
         } else {
             newRound()
-        }
 
-        minecarts.applyForEach { remove() }
+            Bukkit.broadcastMessage("yo")
+                    minecarts.applyForEach { remove() }
         minecarts.clear()
+        }
+//
+//        minecarts.applyForEach { remove() }
+//        minecarts.clear()
     }
 
     override fun stop() {
-        minecarts.applyForEach {
-            remove()
-        }
+//        minecarts.applyForEach {
+//            remove()
+//        }
     }
 
     override fun onPlayerJoin(player: Player) {
