@@ -142,17 +142,18 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
+        minecarts.applyForEach { remove() }
+        minecarts.clear()
+
         if (alive.size <= 1) {
             music.destroy()
-            GameEngine.stop()
+            delay {
+                GameEngine.stop()
+            }
         } else {
             newRound()
 
             Bukkit.broadcastMessage("yo")
-
-
-            minecarts.applyForEach { remove() }
-        minecarts.clear()
         }
 //
 //        minecarts.applyForEach { remove() }
