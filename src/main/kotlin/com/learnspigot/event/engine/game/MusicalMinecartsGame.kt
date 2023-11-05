@@ -126,6 +126,7 @@ class MusicalMinecartsGame : Game() {
         minecarts.applyForEach {
             remove()
         }
+        minecarts.clear()
 
         // CHECK FOR WINNER
         if (alive.size <= 1) {
