@@ -149,7 +149,9 @@ class MusicalMinecartsGame : Game() {
             newRound()
 
             Bukkit.broadcastMessage("yo")
-                    minecarts.applyForEach { remove() }
+
+
+            minecarts.applyForEach { remove() }
         minecarts.clear()
         }
 //
