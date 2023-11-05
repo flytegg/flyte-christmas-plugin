@@ -126,7 +126,7 @@ class MusicalMinecartsGame : Game() {
         Bukkit.getOnlinePlayers().applyForEach { clearActionBar() }
 
         // ADD SCORES AND REMOVE PLAYERS NOT IN MINECART
-        val iterator = alive.iterator()k
+        val iterator = alive.iterator()
         while (iterator.hasNext()) {
             val player = iterator.next()
             if (inMinecart.contains(player)) {
