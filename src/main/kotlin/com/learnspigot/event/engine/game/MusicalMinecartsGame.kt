@@ -100,9 +100,9 @@ class MusicalMinecartsGame : Game() {
                     return@repeat
                 }
 
-                val component = Component.text()
+                val component = text()
                 for (i in 1 until 41) {
-                    component.append(Component.text('|').color(if (i >= iter) NamedTextColor.GRAY else NamedTextColor.GREEN))
+                    component.append(text('|').color(if (i >= iter) NamedTextColor.GRAY else NamedTextColor.GREEN))
                 }
 
                 Bukkit.getOnlinePlayers().applyForEach {
@@ -125,6 +125,7 @@ class MusicalMinecartsGame : Game() {
             val player = iterator.next()
             if (player.isInsideVehicle && player.vehicle!!.type == EntityType.MINECART) {
                 points[player.uniqueId] = points.getOrDefault(player.uniqueId, 0) + 1
+                player.leaveVehicle()
             } else {
                 player.teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!)
                 player.playSound(Sound.ENTITY_PLAYER_DEATH)
@@ -138,7 +139,6 @@ class MusicalMinecartsGame : Game() {
             remove()
         }
         minecarts.clear()
-        inMinecart.clear()
 
         // CHECK FOR WINNER
         if (alive.size <= 1) {

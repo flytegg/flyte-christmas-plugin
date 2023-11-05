@@ -4,8 +4,11 @@ import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import com.learnspigot.event.engine.GameEngine
 import com.learnspigot.event.util.npc.NPC
 import com.learnspigot.event.visual.TablistManager
+import gg.flyte.twilight.event.custom.PlayerMainHandInteractEvent
+import gg.flyte.twilight.event.custom.PlayerOffHandInteractEvent
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.scheduler.delay
+import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
@@ -16,6 +19,23 @@ import org.bukkit.potion.PotionEffectType
 object ConnectionListener {
 
     init {
+        event<PlayerMainHandInteractEvent> {
+            Bukkit.broadcastMessage("main hand event")
+        }
+
+        event<PlayerOffHandInteractEvent> {
+            Bukkit.broadcastMessage("offhand event")
+        }
+
+
+
+
+
+
+
+
+
+
         event<PlayerJoinEvent> {
             joinMessage(null)
 
