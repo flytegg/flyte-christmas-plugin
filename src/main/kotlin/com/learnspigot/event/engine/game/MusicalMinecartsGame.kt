@@ -136,14 +136,13 @@ class MusicalMinecartsGame : Game() {
 
         inMinecart.applyForEach { leaveVehicle() }
 
-        tasks += delay {
-            minecarts.applyForEach { remove() }
-            minecarts.clear()
-        }
+//        tasks += delay {
+//            minecarts.applyForEach { remove() }
+//            minecarts.clear()
+//        }
 
         if (alive.size <= 1) {
-            music.destroy()
-            tasks += delay {
+            tasks += delay(2) {
                 GameEngine.stop()
             }
         } else {
@@ -155,6 +154,7 @@ class MusicalMinecartsGame : Game() {
         minecarts.applyForEach {
             remove()
         }
+        music.destroy()
     }
 
     override fun onPlayerJoin(player: Player) {
