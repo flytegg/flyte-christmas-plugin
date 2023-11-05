@@ -129,7 +129,7 @@ class MusicalMinecartsGame : Game() {
         val iterator = alive.iterator()
         while (iterator.hasNext()) {
             val player = iterator.next()
-            if (player.vehicle?.type == EntityType.MINECART) {
+            if (inMinecart.contains(player)) {
                 points[player.uniqueId] = points.getOrDefault(player.uniqueId, 0) + 1
 
                 Bukkit.broadcastMessage("$player is not eliminated")
@@ -142,14 +142,6 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-// CHECK FOR WINNER
-        var throughToNextRound = 0
-        for (player in alive) {
-            if (player.isInsideVehicle && player.vehicle?.type == EntityType.MINECART) {
-                throughToNextRound++
-            }
-        }
-
 // CLEAR MINECARTS
         Bukkit.getWorld("world")?.entities?.forEach { entity ->
             if (entity.type == EntityType.MINECART) {
@@ -157,13 +149,12 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-        if (throughToNextRound <= 1) { // end
+        if (alive.size <= 1) { // end
             music.destroy()
             GameEngine.stop()
         } else {
             newRound()
         }
-
     }
 
     override fun stop() {
