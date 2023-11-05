@@ -3,6 +3,7 @@ package com.learnspigot.event.engine
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
+import gg.flyte.twilight.extension.clearActionBar
 import gg.flyte.twilight.scheduler.repeat
 import gg.flyte.twilight.time.TimeUnit
 import net.kyori.adventure.text.Component.*
@@ -12,7 +13,6 @@ import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.entity.Player
-import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.scheduler.BukkitTask
 import java.time.Duration
 import java.util.*
@@ -77,7 +77,7 @@ object GameEngine {
             sendMessage("balls")
             teleport(LOBBY_SPAWN)
             clearTitle()
-            sendActionBar(empty())
+            clearActionBar()
             sendMessage("ballz")
         }
 
