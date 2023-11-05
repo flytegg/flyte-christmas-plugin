@@ -142,12 +142,10 @@ class MusicalMinecartsGame : Game() {
             }
         }
 
-// CLEAR MINECARTS
-        Bukkit.getWorld("world")?.entities?.forEach { entity ->
-            if (entity.type == EntityType.MINECART) {
-                entity.remove()
-            }
+        minecarts.applyForEach {
+            remove()
         }
+        minecarts.clear()
 
         if (alive.size <= 1) { // end
             music.destroy()
