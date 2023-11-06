@@ -9,9 +9,13 @@ import com.learnspigot.event.util.npc.NPCListener
 import gg.flyte.twilight.event.disableCustomEventListeners
 import gg.flyte.twilight.extension.enumValue
 import gg.flyte.twilight.twilight
+import net.kyori.adventure.text.Component.text
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.Server
 import org.bukkit.World
+import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import revxrsal.commands.exception.CommandErrorException
@@ -24,6 +28,26 @@ class ChristmasEvent : JavaPlugin() {
         lateinit var SERVER: Server
         lateinit var WORLD: World
         lateinit var LOBBY_SPAWN: MapLocation
+
+        const val RESOURCE_PACK_URL = "https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip"
+        val RED_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+            itemMeta = itemMeta.apply {
+                displayName(text("Christmas Hat", NamedTextColor.RED))
+                setCustomModelData(1)
+            }
+        }
+        val BLUE_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+            itemMeta = itemMeta.apply {
+                displayName(text("Christmas Hat", NamedTextColor.BLUE))
+                setCustomModelData(2)
+            }
+        }
+        val GREEN_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+            itemMeta = itemMeta.apply {
+                displayName(text("Christmas Hat", NamedTextColor.GREEN))
+                setCustomModelData(3)
+            }
+        }
     }
 
     override fun onEnable() {
