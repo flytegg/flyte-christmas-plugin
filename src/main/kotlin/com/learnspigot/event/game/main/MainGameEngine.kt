@@ -1,6 +1,8 @@
-package com.learnspigot.event.engine
+package com.learnspigot.event.game.main
 
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
+import com.learnspigot.event.game.GameState
+import com.learnspigot.event.game.GameType
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.extension.clearActionBar
@@ -17,10 +19,10 @@ import org.bukkit.scheduler.BukkitTask
 import java.time.Duration
 import java.util.*
 
-object GameEngine {
+object MainGameEngine {
 
     var type: GameType? = null
-    var game: Game? = null
+    var game: MainGame? = null
 
     val points = mutableMapOf<UUID, Int>()
 
@@ -30,9 +32,12 @@ object GameEngine {
      * Initiates the game, including player teleportation, game initialization, and countdown before starting.
      */
     fun start() {
-        Bukkit.getOnlinePlayers().applyForEach { teleport(this@GameEngine.type!!.spawns.random()) }
+        Bukkit.getOnlinePlayers().applyForEach {
+            teleport(MainGameEngine.type!!.spawns.random())
+            gameMode = MainGameEngine.type!!.gameMode
+        }
 
-        game = (type!!.clazz.getDeclaredConstructor().newInstance() as Game).apply { events() }
+        game = (type!!.clazz.getDeclaredConstructor().newInstance() as MainGame).apply { events() }
 
         Bukkit.broadcast(
             text().append(
@@ -144,10 +149,10 @@ object GameEngine {
         }
     }
 
-}
+    val CHAT_SPLITTER = text(
+        "                                                                               ",
+        NamedTextColor.GRAY,
+        TextDecoration.STRIKETHROUGH
+    )
 
-val CHAT_SPLITTER = text(
-    "                                                                               ",
-    NamedTextColor.GRAY,
-    TextDecoration.STRIKETHROUGH
-)
+}

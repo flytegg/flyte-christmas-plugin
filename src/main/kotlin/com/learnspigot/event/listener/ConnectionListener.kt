@@ -3,7 +3,7 @@ package com.learnspigot.event.listener
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import com.learnspigot.event.ChristmasEvent.Companion.RED_CHRISTMAS_HAT
 import com.learnspigot.event.ChristmasEvent.Companion.RESOURCE_PACK_URL
-import com.learnspigot.event.engine.GameEngine
+import com.learnspigot.event.game.main.MainGameEngine
 import com.learnspigot.event.util.npc.NPC
 import com.learnspigot.event.visual.TablistManager
 import gg.flyte.twilight.event.event
@@ -30,7 +30,7 @@ object ConnectionListener {
             player.apply {
                 setResourcePack(RESOURCE_PACK_URL, null, true)
 
-                GameEngine.onPlayerJoin(this)
+                MainGameEngine.onPlayerJoin(this)
 
                 gameMode = GameMode.ADVENTURE
                 foodLevel = 20
@@ -60,7 +60,7 @@ object ConnectionListener {
             quitMessage(null)
 
             player.apply {
-                GameEngine.onPlayerQuit(this)
+                MainGameEngine.onPlayerQuit(this)
                 TablistManager.remove(this)
             }
         }

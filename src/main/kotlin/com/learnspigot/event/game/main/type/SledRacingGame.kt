@@ -1,8 +1,8 @@
-package com.learnspigot.event.engine.game
+package com.learnspigot.event.game.main.type
 
 import com.learnspigot.event.ChristmasEvent
-import com.learnspigot.event.engine.Game
-import com.learnspigot.event.engine.GameEngine
+import com.learnspigot.event.game.main.MainGame
+import com.learnspigot.event.game.main.MainGameEngine
 import com.learnspigot.event.util.MapLocation
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.applyForEach
@@ -19,7 +19,7 @@ import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.vehicle.VehicleExitEvent
 import org.bukkit.util.BoundingBox
 
-class SledRacingGame : Game() {
+class SledRacingGame : MainGame() {
 
     private val STARTING_WALL = BoundingBox.of(
         MapLocation(-136, 80, 95),
@@ -69,7 +69,7 @@ class SledRacingGame : Game() {
 
             if (timer == 0.0) {
                 Bukkit.broadcastMessage("game ended as end timer reached")
-                GameEngine.stop()
+                MainGameEngine.stop()
                 return@repeat
             }
 
@@ -84,7 +84,7 @@ class SledRacingGame : Game() {
 
             if (points.size == competingPlayers) {
                 Bukkit.broadcastMessage("game ended as all players finished")
-                GameEngine.stop()
+                MainGameEngine.stop()
             }
 
             timer -= 0.25

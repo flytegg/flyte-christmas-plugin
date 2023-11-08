@@ -1,5 +1,6 @@
-package com.learnspigot.event.engine
+package com.learnspigot.event.game
 
+import com.learnspigot.event.game.main.MainGameEngine
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
@@ -21,28 +22,28 @@ object GameCommand {
 
     @Subcommand("set")
     fun set(sender: CommandSender, game: GameType) {
-        if (GameEngine.game != null) commandError("Cannot change game whilst current ongoing.")
+        if (MainGameEngine.game != null) commandError("Cannot change game whilst current ongoing.")
 
-        GameEngine.type = game
+        MainGameEngine.type = game
         sender.sendMessage(Component.text("You have set the game type to $game.").color(NamedTextColor.GREEN))
         Bukkit.broadcast(Component.text("game changed to ").append(game.title))
     }
 
     @Subcommand("start")
     fun start(sender: CommandSender) {
-        if (GameEngine.game != null) commandError("There is already a game ongoing.")
-        if (GameEngine.type == null) commandError("There is no game type set. Use /game set [game].")
+        if (MainGameEngine.game != null) commandError("There is already a game ongoing.")
+        if (MainGameEngine.type == null) commandError("There is no game type set. Use /game set [game].")
 
         sender.sendMessage(Component.text("You have started the game.").color(NamedTextColor.GREEN))
-        GameEngine.start()
+        MainGameEngine.start()
     }
 
     @Subcommand("stop")
     fun stop(sender: CommandSender) {
-        if (GameEngine.game == null && GameEngine.countdownTask == null) commandError("There is no game to stop.")
+        if (MainGameEngine.game == null && MainGameEngine.countdownTask == null) commandError("There is no game to stop.")
 
         sender.sendMessage(Component.text("You have stopped the game.").color(NamedTextColor.GREEN))
-        GameEngine.stop()
+        MainGameEngine.stop()
     }
 
 }

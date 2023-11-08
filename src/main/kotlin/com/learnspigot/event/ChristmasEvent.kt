@@ -1,8 +1,8 @@
 package com.learnspigot.event
 
 import com.learnspigot.event.debug.DebugCommand
-import com.learnspigot.event.engine.GameCommand
-import com.learnspigot.event.engine.GameType
+import com.learnspigot.event.game.GameCommand
+import com.learnspigot.event.game.GameType
 import com.learnspigot.event.listener.ConnectionListener
 import com.learnspigot.event.listener.MapListener
 import com.learnspigot.event.util.MapLocation

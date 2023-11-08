@@ -1,9 +1,9 @@
-package com.learnspigot.event.engine.game
+package com.learnspigot.event.game.main.type
 
 import com.learnspigot.event.ChristmasEvent
-import com.learnspigot.event.engine.Game
-import com.learnspigot.event.engine.GameEngine
-import com.learnspigot.event.engine.GameType
+import com.learnspigot.event.game.main.MainGame
+import com.learnspigot.event.game.main.MainGameEngine
+import com.learnspigot.event.game.GameType
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
@@ -27,7 +27,7 @@ import org.bukkit.util.BoundingBox
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class MusicalMinecartsGame : Game() {
+class MusicalMinecartsGame : MainGame() {
 
     private val MINECART_SPAWN = BoundingBox.of(
         MapLocation(-147, 86, 71),
@@ -144,7 +144,7 @@ class MusicalMinecartsGame : Game() {
         if (alive.size <= 1) {
             music.destroy()
             delay {
-                GameEngine.stop()
+                MainGameEngine.stop()
             }
         } else {
             newRound()

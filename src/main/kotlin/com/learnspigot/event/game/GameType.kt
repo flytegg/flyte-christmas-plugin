@@ -1,13 +1,22 @@
-package com.learnspigot.event.engine
+package com.learnspigot.event.game
 
-import com.learnspigot.event.engine.game.MusicalMinecartsGame
-import com.learnspigot.event.engine.game.SledRacingGame
+import com.learnspigot.event.game.lobby.type.PresentHuntGame
+import com.learnspigot.event.game.main.MainGame
+import com.learnspigot.event.game.main.type.MusicalMinecartsGame
+import com.learnspigot.event.game.main.type.SledRacingGame
 import com.learnspigot.event.util.MapLocation
 import net.kyori.adventure.text.Component
 import org.bukkit.GameMode
 import org.bukkit.util.BoundingBox
+import javax.naming.ldap.PagedResultsResponseControl
+
+enum class GameCategory {
+    LOBBY,
+    MAIN
+}
 
 enum class GameType(
+    val category: GameCategory,
     val title: Component,
     val description: Component,
     val gameMode: GameMode,
@@ -17,7 +26,10 @@ enum class GameType(
     val spectatorSpawn: MapLocation?
 ) {
 
+    // MAIN GAMES
+
     MUSICAL_MINECARTS(
+        GameCategory.MAIN,
         Component.text("Musical Minecarts"),
         Component.text("test game"),
         GameMode.ADVENTURE,
@@ -33,10 +45,30 @@ enum class GameType(
     ),
 
     SLED_RACING(
+        GameCategory.MAIN,
         Component.text("Sled Racing"),
         Component.text("test game2"),
         GameMode.ADVENTURE,
         SledRacingGame::class.java,
+        BoundingBox.of(
+            MapLocation(-133, 83, 95),
+            MapLocation(-174, 79, 103)
+        ),
+        listOf(
+            MapLocation(-133, 80, 100, 90, 0)
+        ),
+        MapLocation(-151, 80, 92)
+    ),
+
+
+    // LOBBY GAMES
+
+    PRESENT_HUNT(
+        GameCategory.LOBBY,
+        Component.text("Presnt Hunt"),
+        Component.text("adwdwawd"),
+        GameMode.ADVENTURE,
+        PresentHuntGame::class.java,
         BoundingBox.of(
             MapLocation(-133, 83, 95),
             MapLocation(-174, 79, 103)

@@ -1,4 +1,4 @@
-package com.learnspigot.event.engine
+package com.learnspigot.event.game
 
 enum class GameState {
 
