@@ -1,22 +1,62 @@
 package com.learnspigot.event.game.lobby.type
 
 import com.learnspigot.event.game.lobby.LobbyGame
+import com.learnspigot.event.game.lobby.LobbyGameEngine
+import com.learnspigot.event.util.MapLocation
+import gg.flyte.twilight.event.custom.interact.PlayerMainHandInteractEvent
+import gg.flyte.twilight.event.event
+import gg.flyte.twilight.extension.applyForEach
+import net.kyori.adventure.text.Component
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
-class PresentHuntGame : LobbyGame() {
+class PresentHuntGame(override val player: Player) : LobbyGame() {
+
+    companion object {
+        private var metadataSet = false
+
+        private val PRESENT_LOCATIONS = listOf(
+            MapLocation(1,1,1)
+        )
+    }
+
+    private val collectedPresents = mutableListOf<Int>()
+
     override fun events() {
-        TODO("Not yet implemented")
+        events += event<PlayerMainHandInteractEvent> {
+            clickedBlock?.let {
+                if (it.type != Material.PLAYER_HEAD) return@let
+                if (!it.hasMetadata("present")) return@let
+
+                val present = it.getMetadata("present").first().asInt()
+                if (collectedPresents.contains(present)) return@let
+
+                collectedPresents += present
+                player.sendBlockChange(it.location, Material.AIR.createBlockData())
+
+                if (collectedPresents.size == PRESENT_LOCATIONS.size) {
+                    player.sendMessage(Component.text("YOU COLLECTEDALL PRESENTS! GAME IS JOEVER"))
+                    LobbyGameEngine.stopGame(player, this@PresentHuntGame)
+                } else {
+                    player.sendMessage(Component.text("present collected"))
+                }
+            }
+        }
     }
 
     override fun start() {
-        TODO("Not yet implemented")
+        if (!metadataSet) {
+            PRESENT_LOCATIONS.applyForEach { block.type = Material.PLAYER_HEAD }// Add christmas texture
+            metadataSet = true
+        }
     }
 
     override fun stop() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onPlayerQuit(player: Player) {
-        TODO("Not yet implemented")
+        LobbyGameEngine.stopGame(player, this)
     }
+
 }

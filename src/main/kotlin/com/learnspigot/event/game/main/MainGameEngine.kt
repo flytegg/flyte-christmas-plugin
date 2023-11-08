@@ -1,8 +1,8 @@
 package com.learnspigot.event.game.main
 
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
-import com.learnspigot.event.game.GameState
 import com.learnspigot.event.game.GameType
+import com.learnspigot.event.game.lobby.LobbyGameEngine
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.extension.clearActionBar
@@ -32,6 +32,10 @@ object MainGameEngine {
      * Initiates the game, including player teleportation, game initialization, and countdown before starting.
      */
     fun start() {
+        LobbyGameEngine.games.toList().forEach { (player, game) ->
+            LobbyGameEngine.stopGame(player, game)
+        }
+
         Bukkit.getOnlinePlayers().applyForEach {
             teleport(MainGameEngine.type!!.spawns.random())
             gameMode = MainGameEngine.type!!.gameMode
@@ -66,7 +70,7 @@ object MainGameEngine {
 
             if (countdown == 0) {
                 cancel()
-                game!!.state = GameState.ACTIVE
+                game!!.state = MainGameState.ACTIVE
                 game!!.start()
             }
 

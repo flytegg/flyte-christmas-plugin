@@ -6,8 +6,6 @@ import org.bukkit.scheduler.BukkitTask
 
 abstract class Game {
 
-    var state = GameState.COUNTDOWN
-
     val tasks = mutableListOf<BukkitTask>()
     val events = mutableListOf<TwilightListener>()
 
