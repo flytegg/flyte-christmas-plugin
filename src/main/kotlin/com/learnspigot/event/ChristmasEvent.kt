@@ -4,6 +4,7 @@ import com.learnspigot.event.debug.DebugCommand
 import com.learnspigot.event.engine.GameCommand
 import com.learnspigot.event.engine.GameType
 import com.learnspigot.event.listener.ConnectionListener
+import com.learnspigot.event.listener.MapListener
 import com.learnspigot.event.util.MapLocation
 import com.learnspigot.event.util.npc.NPCListener
 import gg.flyte.twilight.event.disableCustomEventListeners
@@ -36,6 +37,7 @@ class ChristmasEvent : JavaPlugin() {
                 setCustomModelData(1)
             }
         }
+
         val BLUE_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
             itemMeta = itemMeta.apply {
                 displayName(text("Christmas Hat", NamedTextColor.BLUE))
@@ -107,6 +109,7 @@ class ChristmasEvent : JavaPlugin() {
     private fun listeners() {
         ConnectionListener
         NPCListener
+        MapListener
     }
 
 }
