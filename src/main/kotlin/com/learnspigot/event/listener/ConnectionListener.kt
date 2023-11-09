@@ -1,8 +1,6 @@
 package com.learnspigot.event.listener
 
 import com.learnspigot.event.ChristmasEvent.Companion.LOBBY_SPAWN
-import com.learnspigot.event.ChristmasEvent.Companion.RED_CHRISTMAS_HAT
-import com.learnspigot.event.ChristmasEvent.Companion.RESOURCE_PACK_URL
 import com.learnspigot.event.game.main.MainGameEngine
 import com.learnspigot.event.util.npc.NPC
 import com.learnspigot.event.visual.TablistManager
@@ -11,17 +9,42 @@ import gg.flyte.twilight.scheduler.delay
 import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
+import org.bukkit.Material
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerKickEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerResourcePackStatusEvent
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
 object ConnectionListener {
+
+    private const val RESOURCE_PACK_URL = "https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip"
+
+    private val RED_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+        itemMeta = itemMeta.apply {
+            displayName(text("Christmas Hat", NamedTextColor.RED))
+            setCustomModelData(1)
+        }
+    }
+
+    private val BLUE_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+        itemMeta = itemMeta.apply {
+            displayName(text("Christmas Hat", NamedTextColor.BLUE))
+            setCustomModelData(2)
+        }
+    }
+
+    private val GREEN_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
+        itemMeta = itemMeta.apply {
+            displayName(text("Christmas Hat", NamedTextColor.GREEN))
+            setCustomModelData(3)
+        }
+    }
 
     init {
         event<PlayerJoinEvent> {
