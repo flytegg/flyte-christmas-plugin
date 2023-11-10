@@ -59,11 +59,6 @@ class ChristmasEvent : JavaPlugin() {
 
     private fun commands() {
         BukkitCommandHandler.create(this).apply {
-            register(
-                GameCommand,
-                DebugCommand
-            )
-
             registerValueResolver(GameType::class.java) {
                 enumValue<GameType>(it.pop()) ?: throw CommandErrorException("Invalid game type!", it.pop())
             }
@@ -79,6 +74,11 @@ class ChristmasEvent : JavaPlugin() {
                     Bukkit.getWorlds().map { it.name }
                 }
             }
+
+            register(
+                GameCommand,
+                DebugCommand
+            )
         }
     }
 
