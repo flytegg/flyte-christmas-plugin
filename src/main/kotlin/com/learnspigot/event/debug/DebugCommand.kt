@@ -13,6 +13,7 @@ import revxrsal.commands.ktx.commandError
 object DebugCommand {
     init {
         Bukkit.createWorld(WorldCreator("build"))
+        Bukkit.createWorld(WorldCreator("tree"))
     }
 
     @Subcommand("tp")
