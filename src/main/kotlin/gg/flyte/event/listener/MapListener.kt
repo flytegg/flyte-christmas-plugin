@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.entity.FoodLevelChangeEvent
 
 object MapListener {
 
@@ -20,6 +21,10 @@ object MapListener {
 
         event<EntityDamageEvent>(priority = EventPriority.LOWEST) {
             isCancelled = entityType == EntityType.PLAYER
+        }
+
+        event<FoodLevelChangeEvent> {
+            isCancelled = true
         }
     }
 

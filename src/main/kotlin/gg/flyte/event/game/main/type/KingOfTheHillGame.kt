@@ -120,9 +120,9 @@ class KingOfTheHillGame : MainGame() {
                     if (player.health == 2.0) {
                         player.apply {
                             inventory.clear()
+                            world.strikeLightning(player.location)
                             teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
                             playSound(Sound.ENTITY_PLAYER_DEATH)
-                            world.strikeLightning(player.location)
                             getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
                             health = 20.0
                             resetTitle()

@@ -72,9 +72,9 @@ enum class GameType(
             MapLocation(-189, 82, 63)
         ),
         listOf(
-            MapLocation(-190, 82, 65, 90, 0)
+            MapLocation(-190, 81, 68, 90, 0)
         ),
-        MapLocation(-180, 80, 64, 90, 0)
+        MapLocation(-180.5, 80, 65, 90, 0)
     ),
 
 
