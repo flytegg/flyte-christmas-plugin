@@ -3,6 +3,7 @@ package gg.flyte.event.game.main.type
 import gg.flyte.event.game.GameType
 import gg.flyte.event.game.main.MainGame
 import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.game.main.MainGameEngine.points
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.*
 import gg.flyte.twilight.scheduler.repeat
@@ -60,35 +61,9 @@ class KingOfTheHillGame : MainGame() {
 
     private fun gameLoop() {
         val onHill = mutableListOf<Player>()
-
-        val iterator = alive.iterator()
-        while (iterator.hasNext()) {
-            val player = iterator.next()
-            if (player.location.y <= RESPAWN_Y) {
-                if (player.health == 2.0) {
-                    player.apply {
-                        inventory.clear()
-                        teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
-                        playSound(Sound.ENTITY_PLAYER_DEATH)
-                        world.strikeLightning(player.location)
-                        getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
-                        health = 20.0
-                        resetTitle()
-                        clearActionBar()
-                    }
-                    iterator.remove()
-                    Bukkit.broadcastMessage("${player.name} was elmimnated")
-
-                    if (alive.size == 0) {
-                        Bukkit.broadcastMessage("game ended, $player last man standing")
-                        MainGameEngine.stop()
-                        return
-                    }
-                } else {
-                    player.health = player.health - 2
-                }
-            } else if (GameType.KING_OF_THE_HILL.region.contains(player.location)) {
-                onHill.add(player)
+        alive.applyForEach {
+            if (GameType.KING_OF_THE_HILL.region.contains(location)) {
+                onHill.add(this)
             }
         }
 
@@ -135,6 +110,41 @@ class KingOfTheHillGame : MainGame() {
 
         tasks += repeat(1, 1) {
             gameLoop()
+        }
+
+        tasks += repeat(4, 4) {
+            val iterator = alive.iterator()
+            while (iterator.hasNext()) {
+                val player = iterator.next()
+                if (player.location.y <= RESPAWN_Y) {
+                    if (player.health == 2.0) {
+                        player.apply {
+                            inventory.clear()
+                            teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
+                            playSound(Sound.ENTITY_PLAYER_DEATH)
+                            world.strikeLightning(player.location)
+                            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+                            health = 20.0
+                            resetTitle()
+                            clearActionBar()
+                        }
+                        iterator.remove()
+                        Bukkit.broadcastMessage("${player.name} was elmimnated")
+
+                        if (alive.size == 0) {
+                            Bukkit.broadcastMessage("game ended, $player last man standing")
+                            MainGameEngine.stop()
+                            return@repeat
+                        }
+                    } else {
+                        player.apply {
+                            health = player.health - 2
+                            teleport(GameType.KING_OF_THE_HILL.spawns[0])
+                            sendMessage("you fell, lost another life")
+                        }
+                    }
+                }
+            }
         }
 
         tasks += repeat(0, 20) {
