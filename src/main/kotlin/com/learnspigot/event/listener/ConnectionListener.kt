@@ -10,6 +10,7 @@ import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.attribute.Attribute
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerJoinEvent
@@ -60,6 +61,7 @@ object ConnectionListener {
                 health = 20.0
                 addPotionEffect(PotionEffect(PotionEffectType.NIGHT_VISION, Int.MAX_VALUE, 10, false, false))
                 teleport(LOBBY_SPAWN)
+                getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.baseValue = 20.0;
 
                 inventory.clear()
                 inventory.helmet = RED_CHRISTMAS_HAT

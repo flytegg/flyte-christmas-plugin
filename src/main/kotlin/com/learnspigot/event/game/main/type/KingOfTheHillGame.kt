@@ -49,6 +49,7 @@ class KingOfTheHillGame : MainGame() {
         events += event<EntityDamageEvent>(priority = EventPriority.HIGHEST) {
             if (cause == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
                 isCancelled = false
+                damage = 0.0
             }
         }
 
@@ -127,7 +128,7 @@ class KingOfTheHillGame : MainGame() {
 
         alive.addAll(Bukkit.getOnlinePlayers())
         alive.applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 5.0;
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
             health = 10.0
             inventory.addItem(knockbackStick)
         }
@@ -157,8 +158,8 @@ class KingOfTheHillGame : MainGame() {
 
     override fun stop() {
         Bukkit.getOnlinePlayers().applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
-            heal()
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+            health = 20.0
             inventory.clear()
         }
     }
