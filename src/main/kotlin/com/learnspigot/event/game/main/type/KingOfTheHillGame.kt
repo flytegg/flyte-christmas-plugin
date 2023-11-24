@@ -17,6 +17,8 @@ import org.bukkit.Sound
 import org.bukkit.attribute.Attribute
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.event.EventPriority
+import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.inventory.ItemFlag
@@ -42,6 +44,10 @@ class KingOfTheHillGame : MainGame() {
 
         events += event<InventoryClickEvent> {
             isCancelled = true
+        }
+
+        events += event<EntityDamageEvent>(priority = EventPriority.HIGHEST) {
+            isCancelled = false
         }
 
 
@@ -110,7 +116,7 @@ class KingOfTheHillGame : MainGame() {
 
     override fun start() {
         val knockbackStick = ItemStack(Material.STICK).apply {
-            addEnchantment(Enchantment.KNOCKBACK, 3)
+            addUnsafeEnchantment(Enchantment.KNOCKBACK, 3)
             val meta = itemMeta
             meta.displayName(text("Knockback Stick").color(NamedTextColor.WHITE))
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)
