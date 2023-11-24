@@ -1,7 +1,7 @@
 name: ChristmasEvent
-version: 1.0
-main: com.learnspigot.event.ChristmasEvent
-api-version: 1.20
-contributors: [Stephen, Josh]
-website: https://learnspigot.com
+version: 1.0.0
+main: gg.flyte.event.ChristmasEvent
+api-version: '1.20'
+contributors: [Flyte]
+website: https://flyte.gg
 depend: [NoteBlockAPI]
