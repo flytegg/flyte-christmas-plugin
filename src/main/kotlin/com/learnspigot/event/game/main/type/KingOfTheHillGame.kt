@@ -34,7 +34,9 @@ class KingOfTheHillGame : MainGame() {
     private var alive = mutableListOf<Player>()
 
     init {
-
+        Bukkit.getOnlinePlayers().forEach {
+            points[it.uniqueId] = 0
+        }
     }
 
     override fun events() {
@@ -97,7 +99,7 @@ class KingOfTheHillGame : MainGame() {
             }
 
             onHill[0].apply {
-                val newPoints = points.getOrDefault(uniqueId, 0) + 50
+                val newPoints = points[uniqueId]!! + 50
                 sendActionBar(text().append(
                     text("${df.format(newPoints / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
                     text(" | ").color(NamedTextColor.GRAY),
