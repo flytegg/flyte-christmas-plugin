@@ -25,7 +25,7 @@ object TablistManager {
 
     private val fakePlayers = mutableListOf<ServerPlayer>().apply {
         val server = (Bukkit.getServer() as CraftServer).server
-        val world = (gg.flyte.event.ChristmasEvent.WORLD as CraftWorld).handle
+        val world = (ChristmasEvent.WORLD as CraftWorld).handle
         val property = Property(
             "textures",
             "ewogICJ0aW1lc3RhbXAiIDogMTYwNzcxNjUwMzI2OCwKICAicHJvZmlsZUlkIiA6ICJlYjIwYWVkYTRiYTM0NzVmOTczZGNmZjkzNTE2OGZhYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJTa3lGYWxsZWVlIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2IxYmI1NzdkZjg3OGU4NzY1YzhjMDZmZWVlY2Y5ODA3OTRlZWE5ODI4MDFjMjc5NWI4MjY4ZjA5MzI2MGEwZTAiCiAgICB9CiAgfQp9",
