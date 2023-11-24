@@ -15,8 +15,8 @@ import revxrsal.commands.ktx.commandError
 @CommandPermission("admin")
 object GameCommand {
 
-    @DefaultFor
-    fun game() {
+    @DefaultFor("~", "~ help")
+    fun game(sender: CommandSender) {
         commandError("Invalid usage. Use /game set/start/stop [game].")
     }
 

@@ -95,7 +95,8 @@ class BlockPartyGame : MainGame() {
         while (iterator.hasNext()) {
             val player = iterator.next()
             if (player.location.y <= RESPAWN_Y) {
-                Bukkit.broadcastMessage("${player.name} was elmimnated")
+                Bukkit.broadcast(Component.text("${player.name} was eliminated"))
+
                 player.apply {
                     inventory.storageContents = emptyArray()
                     inventory.setItemInOffHand(null)

@@ -38,7 +38,7 @@ tasks {
     compileKotlin { kotlinOptions.jvmTarget = "17" }
 
     shadowJar {
-        val pack = "com.learnspigot.event.shaded."
+        val pack = "gg.flyte.event.shaded."
         relocate("gg.flyte.twilight", "${pack}twilight")
         relocate("revxrsal.commands", "${pack}lamp")
         relocate("com.google.gson", "${pack}gson")

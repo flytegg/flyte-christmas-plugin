@@ -39,7 +39,7 @@ class ChristmasEvent : JavaPlugin() {
         disableCustomEventListeners(OpEventListener)
 
         listeners()
-        commands()
+        CommandManager
 
         // TEST REMOVE
         /*NPC(
