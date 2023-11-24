@@ -9,6 +9,7 @@ plugins {
 
 group = "gg.flyte"
 version = "1.0.0"
+
 repositories {
     maven("https://jitpack.io")
     maven("https://repo.flyte.gg/releases")
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
 
     implementation(libs.twilight)
     implementation(libs.paperlib)
@@ -33,7 +34,7 @@ dependencies {
 
 tasks {
     build { dependsOn(shadowJar) }
-    runServer { minecraftVersion("1.20.2") }
+    runServer { minecraftVersion("1.20.1") }
     compileKotlin { kotlinOptions.jvmTarget = "17" }
 
     shadowJar {
@@ -45,7 +46,6 @@ tasks {
         relocate("com.mongodb", "${pack}mongodb")
         relocate("io.github.cdimascio.dotenv", "${pack}dotenv")
         relocate("net.wesjd.anvilgui", "${pack}anvilgui")
-        relocate("org.bson", "${pack}bson")
         relocate("org.bson", "${pack}bson")
         relocate("org.intellij.lang.annotations", "${pack}jetbrains.annotations")
         relocate("org.jetbrains.annotations", "${pack}jetbrains.annotations")

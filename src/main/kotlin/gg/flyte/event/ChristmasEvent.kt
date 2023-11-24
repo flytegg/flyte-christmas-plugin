@@ -23,7 +23,7 @@ import revxrsal.commands.ktx.autoCompleter
 class ChristmasEvent : JavaPlugin() {
 
     companion object {
-        lateinit var INSTANCE: gg.flyte.event.ChristmasEvent
+        lateinit var INSTANCE: ChristmasEvent
         lateinit var SERVER: Server
         lateinit var WORLD: World
         lateinit var LOBBY_SPAWN: MapLocation
