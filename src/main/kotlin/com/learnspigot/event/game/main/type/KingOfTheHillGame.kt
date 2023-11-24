@@ -47,10 +47,9 @@ class KingOfTheHillGame : MainGame() {
         }
 
         events += event<EntityDamageEvent>(priority = EventPriority.HIGHEST) {
-            if (cause == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-                isCancelled = false
-                damage = 0.0
-            }
+            isCancelled = false
+            setDamage(EntityDamageEvent.DamageModifier.BASE, 0.0)
+            damage = 0.0
         }
 
 
