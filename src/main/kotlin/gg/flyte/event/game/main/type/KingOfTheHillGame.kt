@@ -20,6 +20,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.EventPriority
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.entity.EntityRegainHealthEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.inventory.ItemFlag
@@ -54,6 +55,11 @@ class KingOfTheHillGame : MainGame() {
             damage = 0.0
         }
 
+        events += event<EntityRegainHealthEvent> {
+            isCancelled = true
+            amount = 0.0
+        }
+
 
     }
 
@@ -77,7 +83,7 @@ class KingOfTheHillGame : MainGame() {
                 sendActionBar(text().append(
                     text("${df.format(newPoints / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
                     text(" | ").color(NamedTextColor.GRAY),
-                    text(" second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
+                    text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
                 ).build())
                 points[uniqueId] = newPoints
             }
