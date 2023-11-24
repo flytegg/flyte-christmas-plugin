@@ -97,7 +97,7 @@ class KingOfTheHillGame : MainGame() {
             }
 
             onHill[0].apply {
-                val newPoints = points[uniqueId]!! + 50
+                val newPoints = points.getOrDefault(uniqueId, 0) + 50
                 sendActionBar(text().append(
                     text("${df.format(newPoints / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
                     text(" | ").color(NamedTextColor.GRAY),
@@ -127,7 +127,7 @@ class KingOfTheHillGame : MainGame() {
 
         alive.addAll(Bukkit.getOnlinePlayers())
         alive.applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 5.0;
             health = 10.0
             inventory.addItem(knockbackStick)
         }
@@ -157,7 +157,7 @@ class KingOfTheHillGame : MainGame() {
 
     override fun stop() {
         Bukkit.getOnlinePlayers().applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
             heal()
             inventory.clear()
         }
