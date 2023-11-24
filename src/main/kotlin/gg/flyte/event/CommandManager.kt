@@ -20,14 +20,14 @@ object CommandManager {
         }
     }
 
-    fun BukkitCommandHandler.registerCommands() {
+    private fun BukkitCommandHandler.registerCommands() {
         register(
             GameCommand,
-//            DebugCommand
+            DebugCommand
         )
     }
 
-    fun BukkitCommandHandler.registerAutoComplete() {
+    private fun BukkitCommandHandler.registerAutoComplete() {
         registerValueResolver(GameType::class.java) {
             enumValue<GameType>(it.pop()) ?: throw CommandErrorException("Invalid game type!", it.pop())
         }

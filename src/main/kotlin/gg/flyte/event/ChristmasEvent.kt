@@ -54,31 +54,6 @@ class ChristmasEvent : JavaPlugin() {
         // TEST REMOVE
     }
 
-    private fun commands() {
-        BukkitCommandHandler.create(this).apply {
-            registerValueResolver(GameType::class.java) {
-                enumValue<GameType>(it.pop()) ?: throw CommandErrorException("Invalid game type!", it.pop())
-            }
-
-            registerValueResolver(DebugCommand.WorldName::class.java) { DebugCommand.WorldName(it.pop()) }
-
-            autoCompleter {
-                registerParameterSuggestions(GameType::class.java) { _, _, _ ->
-                    GameType.entries.map { it.name.uppercase() }
-                }
-
-                registerParameterSuggestions(DebugCommand.WorldName::class.java) { _, _, _ ->
-                    Bukkit.getWorlds().map { it.name }
-                }
-            }
-
-            register(
-                GameCommand,
-                DebugCommand
-            )
-        }
-    }
-
     private fun listeners() {
         ConnectionListener
         NPCListener
