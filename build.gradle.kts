@@ -4,37 +4,29 @@ plugins {
     id "io.github.patrick.remapper" version "1.4.0"
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id "io.papermc.paperweight.userdev" version "1.5.5"
-    id "xyz.jpenilla.run-paper" version "2.1.0"
+    id "xyz.jpenilla.run-paper" version "2.1.0" // Adds runServer and runMojangMappedServer tasks for testing
 }
 
 group = 'gg.flyte'
 version = '1.0.0'
 
 repositories {
-    mavenCentral()
-    mavenLocal()
-    maven {
-        name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
-    }
-    maven {
-        name = "sonatype"
-        url = "https://oss.sonatype.org/content/groups/public/"
-    }
-    maven {
-        name 'codemc-snapshots'
-        url 'https://repo.codemc.io/repository/maven-snapshots/'
-    }
-    maven {
-        url "https://repo.flyte.gg/releases"
-    }
-    maven {
-        url "https://jitpack.io"
-    }
+    maven("https://jitpack.io")
+    maven("https://repo.flyte.gg/releases")
+    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://oss.sonatype.org/content/groups/public/")
+    maven("https://repo.codemc.io/repository/maven-snapshots/")
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+
+    implementation(libs.twilight)
+    implementation(libs.paperlib)
+
+    implementation(libs.lamp.common)
+    implementation(libs.lamp.bukkit)
+
     implementation 'net.wesjd:anvilgui:1.7.0-SNAPSHOT'
     implementation "org.mongodb:mongodb-driver-sync:4.9.0"
     implementation "gg.flyte:twilight:1.0.30"

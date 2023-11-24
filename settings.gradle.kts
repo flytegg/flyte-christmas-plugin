@@ -1,3 +1,2 @@
-
-rootProject.name = "ls-christmas-plugin"
+rootProject.name = "flyte-christmas-plugin"
 
