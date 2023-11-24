@@ -1,8 +1,8 @@
 package gg.flyte.event.game.main.type
 
-import com.learnspigot.event.game.main.MainGame
-import com.learnspigot.event.game.main.MainGameEngine
-import com.learnspigot.event.util.NBSSongType
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer
 import gg.flyte.twilight.event.event

@@ -1,7 +1,7 @@
 package gg.flyte.event.util.npc
 
 import gg.flyte.event.ChristmasEvent
-import com.learnspigot.event.util.Skin
+import gg.flyte.event.util.Skin
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import net.minecraft.network.protocol.game.*

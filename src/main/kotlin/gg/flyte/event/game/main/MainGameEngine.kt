@@ -1,8 +1,8 @@
 package gg.flyte.event.game.main
 
 import gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN
-import com.learnspigot.event.game.GameType
-import com.learnspigot.event.game.lobby.LobbyGameEngine
+import gg.flyte.event.game.GameType
+import gg.flyte.event.game.lobby.LobbyGameEngine
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.extension.clearActionBar

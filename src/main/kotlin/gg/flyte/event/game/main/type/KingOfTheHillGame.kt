@@ -1,8 +1,8 @@
 package gg.flyte.event.game.main.type
 
-import com.learnspigot.event.game.GameType
-import com.learnspigot.event.game.main.MainGame
-import com.learnspigot.event.game.main.MainGameEngine
+import gg.flyte.event.game.GameType
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.*
 import gg.flyte.twilight.scheduler.repeat

@@ -1,15 +1,14 @@
 plugins {
-    id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
-    id "io.github.patrick.remapper" version "1.4.0"
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id "io.papermc.paperweight.userdev" version "1.5.5"
-    id "xyz.jpenilla.run-paper" version "2.1.0" // Adds runServer and runMojangMappedServer tasks for testing
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.paperweight)
+    alias(libs.plugins.run.paper)
+
+//    id "io.github.patrick.remapper" version "1.4.0"
 }
 
-group = 'gg.flyte'
-version = '1.0.0'
-
+group = "gg.flyte"
+version = "1.0.0"
 repositories {
     maven("https://jitpack.io")
     maven("https://repo.flyte.gg/releases")
@@ -27,31 +26,19 @@ dependencies {
     implementation(libs.lamp.common)
     implementation(libs.lamp.bukkit)
 
-    implementation 'net.wesjd:anvilgui:1.7.0-SNAPSHOT'
-    implementation "org.mongodb:mongodb-driver-sync:4.9.0"
-    implementation "gg.flyte:twilight:1.0.30"
-    implementation "com.github.SuperGlueLib:LampWrapper:709c323c17"
-    compileOnly "com.github.koca2000:NoteBlockAPI:1.6.2"
-}
-
-build.dependsOn(shadowJar)
-remap.mustRunAfter(build)
-
-tasks {
-    remap {
-        version.set("1.20.1")
-        mustRunAfter build
-    }
+    implementation(libs.anvil.gui)
+    implementation(libs.mongodb)
+    compileOnly(libs.noteblock.api)
 }
 
 tasks {
-    // Configure reobfJar to run when invoking the build task
-    assemble.dependsOn(reobfJar)
+    build { dependsOn(shadowJar) }
+    runServer { minecraftVersion("1.20.2") }
+    compileKotlin { kotlinOptions.jvmTarget = "17" }
 
     shadowJar {
-        def pack = "com.learnspigot.event.shaded."
+        val pack = "com.learnspigot.event.shaded."
         relocate("gg.flyte.twilight", "${pack}twilight")
-        relocate("com.github.supergluelib.lamp", "${pack}lamp.wrapper")
         relocate("revxrsal.commands", "${pack}lamp")
         relocate("com.google.gson", "${pack}gson")
         relocate("kotlin", "${pack}kotlin")
@@ -62,21 +49,38 @@ tasks {
         relocate("org.bson", "${pack}bson")
         relocate("org.intellij.lang.annotations", "${pack}jetbrains.annotations")
         relocate("org.jetbrains.annotations", "${pack}jetbrains.annotations")
+        relocate("io.papermc.lib", "${pack}paperlib")
     }
 }
 
-def targetJavaVersion = 17
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-}
+//remap.mustRunAfter(build)
 
-tasks.withType(JavaCompile).configureEach {
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release = targetJavaVersion
-    }
-}
+//tasks {
+//    remap {
+//        version.set("1.20.1")
+//        mustRunAfter build
+//    }
+//}
+
+
+    // Configure reobfJar to run when invoking the build task
+//    assemble.dependsOn(reobfJar)
+
+
+
+
+//def targetJavaVersion = 17
+//java {
+//    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+//    sourceCompatibility = javaVersion
+//    targetCompatibility = javaVersion
+//    if (JavaVersion.current() < javaVersion) {
+//        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+//    }
+//}
+//
+//tasks.withType(JavaCompile).configureEach {
+//    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+//        options.release = targetJavaVersion
+//    }
+//}

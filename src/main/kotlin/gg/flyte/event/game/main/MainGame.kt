@@ -1,6 +1,6 @@
 package gg.flyte.event.game.main
 
-import com.learnspigot.event.game.Game
+import gg.flyte.event.game.Game
 import org.bukkit.entity.Player
 import java.util.*
 

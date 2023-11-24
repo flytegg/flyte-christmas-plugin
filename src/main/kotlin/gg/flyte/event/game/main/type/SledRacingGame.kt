@@ -1,9 +1,9 @@
 package gg.flyte.event.game.main.type
 
 import gg.flyte.event.ChristmasEvent
-import com.learnspigot.event.game.main.MainGame
-import com.learnspigot.event.game.main.MainGameEngine
-import com.learnspigot.event.util.MapLocation
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.util.MapLocation
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.extension.contains

@@ -1,8 +1,8 @@
 package gg.flyte.event.game.lobby.type
 
-import com.learnspigot.event.game.lobby.LobbyGame
-import com.learnspigot.event.game.lobby.LobbyGameEngine
-import com.learnspigot.event.util.MapLocation
+import gg.flyte.event.game.lobby.LobbyGame
+import gg.flyte.event.game.lobby.LobbyGameEngine
+import gg.flyte.event.util.MapLocation
 import gg.flyte.twilight.event.custom.interact.PlayerMainHandInteractEvent
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.applyForEach

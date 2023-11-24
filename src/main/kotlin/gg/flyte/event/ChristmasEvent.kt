@@ -1,12 +1,13 @@
 package gg.flyte.event
 
-import com.learnspigot.event.debug.DebugCommand
-import com.learnspigot.event.game.GameCommand
-import com.learnspigot.event.game.GameType
-import com.learnspigot.event.listener.ConnectionListener
-import com.learnspigot.event.listener.MapListener
-import com.learnspigot.event.util.MapLocation
-import com.learnspigot.event.util.npc.NPCListener
+import gg.flyte.event.debug.DebugCommand
+import gg.flyte.event.game.GameCommand
+import gg.flyte.event.game.GameType
+import gg.flyte.event.listener.ConnectionListener
+import gg.flyte.event.listener.MapListener
+import gg.flyte.event.util.MapLocation
+
+import gg.flyte.event.util.npc.NPCListener
 import gg.flyte.twilight.event.custom.admin.listener.OpEventListener
 import gg.flyte.twilight.event.disableCustomEventListeners
 import gg.flyte.twilight.extension.enumValue
@@ -29,10 +30,10 @@ class ChristmasEvent : JavaPlugin() {
     }
 
     override fun onEnable() {
-        gg.flyte.event.ChristmasEvent.Companion.INSTANCE = this
-        gg.flyte.event.ChristmasEvent.Companion.SERVER = server
-        gg.flyte.event.ChristmasEvent.Companion.WORLD = Bukkit.getWorld("world")!!
-        gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN = MapLocation(-134, 80, 78, 90, 0)
+        INSTANCE = this
+        SERVER = server
+        WORLD = Bukkit.getWorld("world")!!
+        LOBBY_SPAWN = MapLocation(-134, 80, 78, 90, 0)
 
         twilight(this)
         disableCustomEventListeners(OpEventListener)
@@ -51,10 +52,6 @@ class ChristmasEvent : JavaPlugin() {
             "test"
         )*/
         // TEST REMOVE
-    }
-
-    override fun onDisable() {
-
     }
 
     private fun commands() {

@@ -1,9 +1,9 @@
 package gg.flyte.event.listener
 
 import gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN
-import com.learnspigot.event.game.main.MainGameEngine
-import com.learnspigot.event.util.npc.NPC
-import com.learnspigot.event.visual.TablistManager
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.util.npc.NPC
+import gg.flyte.event.visual.TablistManager
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.scheduler.delay
 import net.kyori.adventure.text.Component.text

@@ -1,11 +1,11 @@
 package gg.flyte.event.game
 
-import com.learnspigot.event.game.lobby.type.PresentHuntGame
-import com.learnspigot.event.game.main.MainGame
-import com.learnspigot.event.game.main.type.KingOfTheHillGame
-import com.learnspigot.event.game.main.type.MusicalMinecartsGame
-import com.learnspigot.event.game.main.type.SledRacingGame
-import com.learnspigot.event.util.MapLocation
+import gg.flyte.event.game.lobby.type.PresentHuntGame
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.type.KingOfTheHillGame
+import gg.flyte.event.game.main.type.MusicalMinecartsGame
+import gg.flyte.event.game.main.type.SledRacingGame
+import gg.flyte.event.util.MapLocation
 import net.kyori.adventure.text.Component
 import org.bukkit.GameMode
 import org.bukkit.util.BoundingBox

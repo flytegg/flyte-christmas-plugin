@@ -1,6 +1,6 @@
 package gg.flyte.event.game
 
-import com.learnspigot.event.game.main.MainGameEngine
+import gg.flyte.event.game.main.MainGameEngine
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit

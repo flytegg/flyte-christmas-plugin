@@ -1,11 +1,11 @@
 package gg.flyte.event.game.main.type
 
 import gg.flyte.event.ChristmasEvent
-import com.learnspigot.event.game.main.MainGame
-import com.learnspigot.event.game.main.MainGameEngine
-import com.learnspigot.event.game.GameType
-import com.learnspigot.event.util.MapLocation
-import com.learnspigot.event.util.NBSSongType
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.game.GameType
+import gg.flyte.event.util.MapLocation
+import gg.flyte.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer
 import gg.flyte.twilight.event.event
