@@ -47,7 +47,9 @@ class KingOfTheHillGame : MainGame() {
         }
 
         events += event<EntityDamageEvent>(priority = EventPriority.HIGHEST) {
-            isCancelled = false
+            if (cause == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+                isCancelled = false
+            }
         }
 
 
@@ -61,7 +63,7 @@ class KingOfTheHillGame : MainGame() {
         val iterator = alive.iterator()
         while (iterator.hasNext()) {
             val player = iterator.next()
-            if (player.y <= RESPAWN_Y) {
+            if (player.location.y <= RESPAWN_Y) {
                 val currentLives = player.health / 2
 
                 if (currentLives == 1.0) {
