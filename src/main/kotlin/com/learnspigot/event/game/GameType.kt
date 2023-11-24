@@ -2,6 +2,7 @@ package com.learnspigot.event.game
 
 import com.learnspigot.event.game.lobby.type.PresentHuntGame
 import com.learnspigot.event.game.main.MainGame
+import com.learnspigot.event.game.main.type.KingOfTheHillGame
 import com.learnspigot.event.game.main.type.MusicalMinecartsGame
 import com.learnspigot.event.game.main.type.SledRacingGame
 import com.learnspigot.event.util.MapLocation
@@ -58,6 +59,22 @@ enum class GameType(
             MapLocation(-133, 80, 100, 90, 0)
         ),
         MapLocation(-151, 80, 92)
+    ),
+
+    KING_OF_THE_HILL(
+        GameCategory.MAIN,
+        Component.text("King Of The Hill"),
+        Component.text("test game3"),
+        GameMode.ADVENTURE,
+        KingOfTheHillGame::class.java,
+        BoundingBox.of(
+            MapLocation(-194, 84, 67),
+            MapLocation(-189, 82, 63)
+        ),
+        listOf(
+            MapLocation(-190, 82, 65, 90, 0)
+        ),
+        MapLocation(-180, 80, 64, 90, 0)
     ),
 
 
