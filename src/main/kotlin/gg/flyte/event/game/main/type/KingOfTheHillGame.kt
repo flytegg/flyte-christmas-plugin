@@ -158,7 +158,7 @@ class KingOfTheHillGame : MainGame() {
                 sendActionBar(text().append(
                     text("${df.format(points[uniqueId]!! / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
                     text(" | ").color(NamedTextColor.GRAY),
-                    text(" second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
+                    text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
                 ).build())
             }
 
