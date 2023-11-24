@@ -65,14 +65,14 @@ class KingOfTheHillGame : MainGame() {
         while (iterator.hasNext()) {
             val player = iterator.next()
             if (player.location.y <= RESPAWN_Y) {
-                val currentLives = player.health / 2
-
-                if (currentLives == 1.0) {
+                if (player.health == 2.0) {
                     player.apply {
                         inventory.clear()
                         teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
                         playSound(Sound.ENTITY_PLAYER_DEATH)
                         world.strikeLightning(player.location)
+                        getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+                        health = 20.0
                         resetTitle()
                         clearActionBar()
                     }
@@ -85,7 +85,7 @@ class KingOfTheHillGame : MainGame() {
                         return
                     }
                 } else {
-                    player.health = currentLives - 2
+                    player.health = player.health - 2
                 }
             } else if (GameType.KING_OF_THE_HILL.region.contains(player.location)) {
                 onHill.add(player)
