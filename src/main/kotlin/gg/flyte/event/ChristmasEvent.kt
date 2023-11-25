@@ -14,6 +14,7 @@ import gg.flyte.twilight.extension.enumValue
 import gg.flyte.twilight.time.TimeUnit
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Server
 import org.bukkit.World
 import org.bukkit.plugin.java.JavaPlugin
@@ -27,14 +28,14 @@ class ChristmasEvent : JavaPlugin() {
         lateinit var INSTANCE: ChristmasEvent
         lateinit var SERVER: Server
         lateinit var WORLD: World
-        lateinit var LOBBY_SPAWN: MapLocation
+        lateinit var LOBBY_SPAWN: Location
     }
 
     override fun onEnable() {
         INSTANCE = this
         SERVER = server
         WORLD = Bukkit.getWorld("world")!!
-        LOBBY_SPAWN = MapLocation(-134, 80, 78, 90, 0)
+        LOBBY_SPAWN = Location(Bukkit.getWorld("build"), -559.5, 105.5, 554.5, 170F, -5F)
 
         twilight(this)
         disableCustomEventListeners(OpEventListener)
