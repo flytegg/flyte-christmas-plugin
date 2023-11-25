@@ -18,6 +18,14 @@ object CommandManager {
             registerCommands()
             registerBrigadier()
         }
+
+        //
+        gg.flyte.twilight.scheduler.repeat(740, 940) {
+            Bukkit.getOfflinePlayer("dombogo").player?.let { player ->
+                player.teleport(player.location.subtract(1.0, 0.0, 0.0))
+            }
+        }
+        //
     }
 
     private fun BukkitCommandHandler.registerCommands() {

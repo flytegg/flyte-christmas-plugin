@@ -123,7 +123,7 @@ class KingOfTheHillGame : MainGame() {
                 if (player.location.y <= RESPAWN_Y) {
                     if (player.health == 2.0) {
                         player.apply {
-                            inventory.clear()
+                            inventory.storageContents = emptyArray()
                             world.strikeLightning(player.location)
                             teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
                             playSound(Sound.ENTITY_PLAYER_DEATH)
@@ -174,7 +174,7 @@ class KingOfTheHillGame : MainGame() {
         Bukkit.getOnlinePlayers().applyForEach {
             getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
             health = 20.0
-            inventory.clear()
+            inventory.storageContents = emptyArray()
             resetTitle()
             clearActionBar()
         }

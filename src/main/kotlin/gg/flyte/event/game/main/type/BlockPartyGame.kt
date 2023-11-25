@@ -91,26 +91,7 @@ class BlockPartyGame : MainGame() {
     private val RESPAWN_Y = 78
 
     private fun gameLoop() {
-        val iterator = alive.iterator()
-        while (iterator.hasNext()) {
-            val player = iterator.next()
-            if (player.location.y <= RESPAWN_Y) {
-                Bukkit.broadcast(Component.text("${player.name} was eliminated"))
 
-                player.apply {
-                    inventory.storageContents = emptyArray()
-                    inventory.setItemInOffHand(null)
-                    world.strikeLightning(location)
-               //     teleport(GameType.BLOCK_PARTY.spectatorSpawn!!)
-                    activePotionEffects.applyForEach {
-                        if (type != PotionEffectType.NIGHT_VISION) {
-                            removePotionEffect(type)
-                        }
-                    }
-                }
-                iterator.remove()
-            }
-        }
 
         if (alive.size <= 1) {
             music.destroy()
