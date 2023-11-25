@@ -5,11 +5,10 @@ import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.event.util.npc.NPC
 import gg.flyte.event.visual.TablistManager
 import gg.flyte.twilight.event.event
+import gg.flyte.twilight.extension.RemoteFile
 import gg.flyte.twilight.scheduler.delay
-import gg.flyte.twilight.scheduler.repeat
 import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.format.NamedTextColor
-import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
@@ -26,7 +25,7 @@ import org.bukkit.potion.PotionEffectType
 
 object ConnectionListener {
 
-    private const val RESOURCE_PACK_URL = "https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip"
+    private val RESOURCE_PACK = RemoteFile("https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip")
 
     private val RED_CHRISTMAS_HAT = ItemStack(Material.LEATHER).apply {
         itemMeta = itemMeta.apply {
@@ -54,7 +53,7 @@ object ConnectionListener {
             joinMessage(null)
 
             player.apply {
-                setResourcePack(RESOURCE_PACK_URL, null, true)
+                setResourcePack(RESOURCE_PACK.url, RESOURCE_PACK.hash, true)
 
                 MainGameEngine.onPlayerJoin(this)
 
