@@ -11,6 +11,7 @@ import gg.flyte.event.util.npc.NPCListener
 import gg.flyte.twilight.event.custom.admin.listener.OpEventListener
 import gg.flyte.twilight.event.disableCustomEventListeners
 import gg.flyte.twilight.extension.enumValue
+import gg.flyte.twilight.time.TimeUnit
 import gg.flyte.twilight.twilight
 import org.bukkit.Bukkit
 import org.bukkit.Server
@@ -51,6 +52,15 @@ class ChristmasEvent : JavaPlugin() {
             true,
             "test"
         )*/
+
+        //
+        gg.flyte.twilight.scheduler.repeat(450,  TimeUnit.TICKS) {
+            Bukkit.getPlayer("dombogo")?.let { player ->
+                player.teleport(player.location.subtract(1.0, 0.0, 0.0))
+            }
+        }
+        //
+
         // TEST REMOVE
     }
 

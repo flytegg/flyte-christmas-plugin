@@ -91,7 +91,17 @@ class BlockPartyGame : MainGame() {
     private val RESPAWN_Y = 78
 
     private fun gameLoop() {
+        val iterator = alive.iterator()
+        if (iterator.hasNext()) {
+            val player = iterator.next()
+            if (player.location.y <= RESPAWN_Y) {
+                iterator.remove()
 
+                player.apply {
+
+                }
+            }
+        }
 
         if (alive.size <= 1) {
             music.destroy()
