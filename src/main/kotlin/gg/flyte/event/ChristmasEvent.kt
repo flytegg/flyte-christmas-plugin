@@ -13,10 +13,7 @@ import gg.flyte.twilight.event.disableCustomEventListeners
 import gg.flyte.twilight.extension.enumValue
 import gg.flyte.twilight.time.TimeUnit
 import gg.flyte.twilight.twilight
-import org.bukkit.Bukkit
-import org.bukkit.Location
-import org.bukkit.Server
-import org.bukkit.World
+import org.bukkit.*
 import org.bukkit.plugin.java.JavaPlugin
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import revxrsal.commands.exception.CommandErrorException
@@ -32,6 +29,7 @@ class ChristmasEvent : JavaPlugin() {
     }
 
     override fun onEnable() {
+        worlds()
         INSTANCE = this
         SERVER = server
         WORLD = Bukkit.getWorld("world")!!
@@ -63,6 +61,11 @@ class ChristmasEvent : JavaPlugin() {
         //
 
         // TEST REMOVE
+    }
+
+    private fun worlds() {
+        Bukkit.createWorld(WorldCreator("build"))
+        Bukkit.createWorld(WorldCreator("tree"))
     }
 
     private fun listeners() {

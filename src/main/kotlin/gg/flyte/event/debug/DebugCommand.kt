@@ -1,7 +1,6 @@
 package gg.flyte.event.debug
 
 import org.bukkit.Bukkit
-import org.bukkit.WorldCreator
 import org.bukkit.entity.Player
 import revxrsal.commands.annotation.Command
 import revxrsal.commands.annotation.Subcommand
@@ -11,10 +10,6 @@ import revxrsal.commands.ktx.commandError
 @Command("debug")
 @CommandPermission("admin")
 object DebugCommand {
-    init {
-        Bukkit.createWorld(WorldCreator("build"))
-        Bukkit.createWorld(WorldCreator("tree"))
-    }
 
     @Subcommand("tp")
     fun tp(player: Player, worldName: WorldName) {
