@@ -38,6 +38,22 @@ object Camera {
         }
     }
 
+    /**
+     * Represents a Bukkit task for smoothly moving the camera of a player through a sequence of locations.
+     *
+     * The camera movement sequence is defined by three stages:
+     *  - Stage 0: Move the camera to a high point, adjusting the Y-coordinate and pitch.
+     *  - Stage 1: Move the camera to the destination X and Z coordinates.
+     *  - Stage 2: Move the camera to the destination Y coordinate.
+     *
+     * The camera movement is achieved through easing functions, providing smooth acceleration and deceleration effects.
+     * The task is executed periodically based on the Bukkit scheduler and is responsible for updating the camera's position
+     * and orientation.
+     *
+     * @param player The player whose camera is being moved.
+     * @param location The final destination of the camera movement.
+     * @param operator The command sender initiating the camera movement.
+     */
     class MoveCameraTask(
         private val player: Player,
         private val location: Location,
@@ -50,6 +66,16 @@ object Camera {
         private var progress = 0.0
         private var stage = 0
 
+        /**
+         * Executes the camera movement logic based on the current stage of the camera sequence.
+         *
+         * The camera sequence consists of three stages:
+         *  - Stage 0: Move the camera to a high point, adjusting the Y-coordinate and pitch.
+         *  - Stage 1: Move the camera to the destination X and Z coordinates.
+         *  - Stage 2: Move the camera to the destination Y coordinate.
+         *
+         * After completing the stages, the camera sequence is finished, and the task is canceled.
+         */
         override fun run() {
             val (curX, curY, curZ, _, curPitch) = player.location
             val (destX, destY, destZ, _, destPitch) = destination
@@ -89,6 +115,15 @@ object Camera {
          */
         private fun easeInOutQuad(t: Double) = if (t < 0.5) 2 * t * t else -1 + (4 - 2 * t) * t
 
+        /**
+         * Updates the camera's position and orientation based on specified delta values.
+         *
+         * @param deltaX The change in the X-coordinate.
+         * @param deltaY The change in the Y-coordinate.
+         * @param deltaZ The change in the Z-coordinate.
+         * @param deltaYaw The change in the yaw rotation.
+         * @param deltaPitch The change in the pitch rotation.
+         */
         private fun updateCamera(
             deltaX: Double = 0.0,
             deltaY: Double = 0.0,
@@ -102,10 +137,23 @@ object Camera {
             )
         }.also { progress() }
 
+        /**
+         * Applies easing to the current value using the ease-in-out quadratic function.
+         *
+         * @return The eased value.
+         */
         private fun Double.eased() = this * easeInOutQuad(progress)
 
+        /**
+         * Applies easing to the current value using the ease-in-out quadratic function.
+         *
+         * @return The eased value.
+         */
         private fun Float.eased() = (this * easeInOutQuad(progress)).toFloat()
 
+        /**
+         * Advances the progress of the camera movement, and triggers the next stage if the progress is complete.
+         */
         private fun progress() {
             progress += 1.0 / duration
 
@@ -115,6 +163,13 @@ object Camera {
             }
         }
 
+        /**
+         * Adds the specified yaw and pitch values to the location's current yaw and pitch.
+         *
+         * @param yaw The change in yaw.
+         * @param pitch The change in pitch.
+         * @return The modified location with the updated yaw and pitch.
+         */
         private fun org.bukkit.Location.addYawPitch(yaw: Float, pitch: Float) = apply {
             this.yaw += yaw
             this.pitch += pitch
@@ -123,6 +178,9 @@ object Camera {
 
 }
 
+/**
+ * Used for destructing Bukkit Location
+ */
 private operator fun Location.component1(): Double = x
 private operator fun Location.component2(): Double = y
 private operator fun Location.component3(): Double = z
