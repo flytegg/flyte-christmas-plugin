@@ -59,8 +59,6 @@ class KingOfTheHillGame : MainGame() {
             isCancelled = true
             amount = 0.0
         }
-
-
     }
 
     private val df = DecimalFormat("0.0")
@@ -137,8 +135,8 @@ class KingOfTheHillGame : MainGame() {
                         iterator.remove()
                         Bukkit.broadcastMessage("${player.name} was elmimnated")
 
-                        if (alive.size == 0) {
-                            Bukkit.broadcastMessage("game ended, $player last man standing")
+                        if (alive.size == 1) {
+                            Bukkit.broadcastMessage("game ended, ${alive[0]!!.name} last man standing")
                             MainGameEngine.stop()
                             return@repeat
                         }
@@ -177,6 +175,8 @@ class KingOfTheHillGame : MainGame() {
             getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
             health = 20.0
             inventory.clear()
+            resetTitle()
+            clearActionBar()
         }
     }
 
