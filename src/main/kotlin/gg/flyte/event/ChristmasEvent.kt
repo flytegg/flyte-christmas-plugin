@@ -33,7 +33,7 @@ class ChristmasEvent : JavaPlugin() {
         INSTANCE = this
         SERVER = server
         WORLD = Bukkit.getWorld("world")!!
-        LOBBY_SPAWN = Location(Bukkit.getWorld("build"), -559.5, 105.5, 554.5, 170F, -5F)
+        LOBBY_SPAWN = Location(Bukkit.getWorld("build"), 559.5, 105.5, 554.5, 170F, -5F)
 
         twilight(this)
         disableCustomEventListeners(OpEventListener)
