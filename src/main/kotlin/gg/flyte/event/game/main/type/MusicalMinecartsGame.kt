@@ -1,13 +1,12 @@
 package gg.flyte.event.game.main.type
 
-import gg.flyte.event.ChristmasEvent
-import gg.flyte.event.game.main.MainGame
-import gg.flyte.event.game.main.MainGameEngine
-import gg.flyte.event.game.GameType
-import gg.flyte.event.util.MapLocation
-import gg.flyte.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer
+import gg.flyte.event.ChristmasEvent
+import gg.flyte.event.game.GameType
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.util.NBSSongType
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.*
 import gg.flyte.twilight.scheduler.delay
@@ -23,16 +22,10 @@ import org.bukkit.entity.Player
 import org.bukkit.event.vehicle.VehicleEnterEvent
 import org.bukkit.event.vehicle.VehicleExitEvent
 import org.bukkit.scheduler.BukkitTask
-import org.bukkit.util.BoundingBox
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class MusicalMinecartsGame : MainGame() {
-
-    private val MINECART_SPAWN = BoundingBox.of(
-        MapLocation(-147, 86, 71),
-        MapLocation(-133, 86, 58)
-    )
 
     private lateinit var music: RadioSongPlayer
 
@@ -89,7 +82,7 @@ class MusicalMinecartsGame : MainGame() {
             Bukkit.getOnlinePlayers().applyForEach { playSound(Sound.BLOCK_NOTE_BLOCK_BASEDRUM) }
 
             // SPAWNING MINECARTS
-            val potentialSpawnLocations = MINECART_SPAWN.getLocations(gg.flyte.event.ChristmasEvent.WORLD)
+            val potentialSpawnLocations = GameType.MUSICAL_MINECARTS.region.getLocations(ChristmasEvent.WORLD)
             kotlin.repeat((alive.size * 0.66).roundToInt()) {
                 minecarts += potentialSpawnLocations.random().spawnEntity(EntityType.MINECART) as Minecart
             }
