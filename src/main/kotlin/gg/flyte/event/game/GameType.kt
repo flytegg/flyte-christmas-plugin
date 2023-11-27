@@ -36,13 +36,13 @@ enum class GameType(
         GameMode.ADVENTURE,
         MusicalMinecartsGame::class.java,
         BoundingBox.of(
-            MapLocation(-145, 86, 69),
-            MapLocation(-135, 79, 60)
+            MapLocation(633, 126, 783),
+            MapLocation(599, 126, 817)
         ),
         listOf(
-            MapLocation(-138, 80, 66)
+            MapLocation(616, 111, 800)
         ),
-        MapLocation(-149, 80, 65, -90, 0)
+        MapLocation(635, 112, 828, 145, 0)
     ),
 
     SLED_RACING(
@@ -68,13 +68,20 @@ enum class GameType(
         GameMode.ADVENTURE,
         KingOfTheHillGame::class.java,
         BoundingBox.of(
-            MapLocation(-194, 84, 67),
-            MapLocation(-189, 82, 63)
+            MapLocation(715, 210, 504),
+            MapLocation(943, 25, 770)
         ),
         listOf(
-            MapLocation(-190, 81, 68, 90, 0)
+            MapLocation(811, 98, 604, -45, -5),
+            MapLocation(831, 100, 600, 3, 0),
+            MapLocation(845, 103, 606, 40, 7),
+            MapLocation(855, 100, 622, 60, 5),
+            MapLocation(855, 101, 640, 135, 3),
+            MapLocation(845, 101, 656, 151, 3),
+            MapLocation(814, 100, 644, -135, 2),
+            MapLocation(803, 96, 624, -90, -7),
         ),
-        MapLocation(-180.5, 80, 65, 90, 0)
+        MapLocation(731, 142, 528, -45, 15)
     ),
 
 
@@ -87,15 +94,11 @@ enum class GameType(
         GameMode.ADVENTURE,
         PresentHuntGame::class.java,
         BoundingBox.of(
-            MapLocation(-133, 83, 95),
-            MapLocation(-174, 79, 103)
+            MapLocation(413, 300, 624),
+            MapLocation(791, 35, 311)
         ),
-        listOf(
-            MapLocation(-133, 80, 100, 90, 0)
-        ),
-        MapLocation(-151, 80, 92)
+        listOf(MapLocation(611, 94, 502, 45, -3)),
+        null
     )
-
-
 
 }
