@@ -16,7 +16,6 @@ import java.util.*
 object Camera {
 
     private const val CAMERA_ACCOUNT_UUID = "850d5af5-f602-411e-b3de-a056d6da2e9d"
-    val cameraPlayer: Player? = Bukkit.getPlayer(UUID.fromString(CAMERA_ACCOUNT_UUID))
 
     enum class Location(val value: org.bukkit.Location) {
         SPAWN(Location(Bukkit.getWorld("build"), 559.5, 130.0, 554.5, 180F, 90F)),
@@ -29,11 +28,11 @@ object Camera {
         @Command("camera")
         @CommandPermission("admin")
         fun camera(sender: CommandSender, location: Location, @Optional cameraPlayer: Player? = null) {
-            val player = cameraPlayer ?: Camera.cameraPlayer ?: commandError("Unable to find a camera.")
+            val player = cameraPlayer ?: Bukkit.getPlayer(UUID.fromString(CAMERA_ACCOUNT_UUID)) ?: commandError("Unable to find a camera.")
             sender.sendMessage("Starting camera sequence to ${location.name}.")
             player.apply {
                 gameMode = GameMode.SPECTATOR
-                MoveCameraTask(this, location, sender).runTaskTimer(ChristmasEvent.INSTANCE, 0, 1)
+                MoveCameraTask(this, location, sender).runTaskTimerAsynchronously(ChristmasEvent.INSTANCE, 0, 1)
             }
         }
     }
@@ -77,12 +76,13 @@ object Camera {
          * After completing the stages, the camera sequence is finished, and the task is canceled.
          */
         override fun run() {
-            val (curX, curY, curZ, _, curPitch) = player.location
-            val (destX, destY, destZ, _, destPitch) = destination
+            val (curX, curY, curZ, curYaw, curPitch) = player.location
+            val (destX, destY, destZ, destYaw, destPitch) = destination
 
             when (stage) {
                 0 -> updateCamera(
                     deltaY = highPoint - curY,
+                    deltaYaw = destYaw - curYaw,
                     deltaPitch = destPitch - curPitch
                 )
 
