@@ -21,6 +21,7 @@ import java.util.*
 
 object TablistManager {
 
+    private val TAB_HEADER = " \n\uEA07\n \n${ChatColor.BLUE}{players}\n "
     private val TAB_FOOTER = " \n" + ChatColor.GRAY + "CHANGE THIIS\n" + ChatColor.AQUA + "CAHNGE THIS\n "
 
     private val fakePlayers = mutableListOf<ServerPlayer>().apply {
@@ -60,7 +61,7 @@ object TablistManager {
 
     private fun updateHeaderFooter() {
         Bukkit.getOnlinePlayers().forEach {
-            it.setPlayerListHeaderFooter(" \nLOGOUNICODE\n \n" + ChatColor.BLUE + Bukkit.getOnlinePlayers().size + " ONLINE\n ", TAB_FOOTER)
+            it.setPlayerListHeaderFooter(TAB_HEADER.replace("{players}", Bukkit.getOnlinePlayers().size.toString()), TAB_FOOTER)
         }
     }
 
