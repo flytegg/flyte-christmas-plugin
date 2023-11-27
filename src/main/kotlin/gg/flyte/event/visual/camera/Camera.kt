@@ -131,7 +131,7 @@ object Camera {
             deltaYaw: Float = 0F,
             deltaPitch: Float = 0F
         ) = player.apply {
-            teleport(
+            teleportAsync(
                 location.add(deltaX.eased(), deltaY.eased(), deltaZ.eased())
                     .addYawPitch(deltaYaw.eased(), deltaPitch.eased())
             )
