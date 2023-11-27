@@ -1,6 +1,7 @@
 package gg.flyte.event.visual.camera
 
 import gg.flyte.event.ChristmasEvent
+import gg.flyte.event.util.MapLocation
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Location
@@ -18,10 +19,10 @@ object Camera {
     private const val CAMERA_ACCOUNT_UUID = "850d5af5-f602-411e-b3de-a056d6da2e9d"
 
     enum class Location(val value: org.bukkit.Location) {
-        SPAWN(Location(Bukkit.getWorld("build"), 559.5, 130.0, 554.5, 180F, 90F)),
-        ARENA(Location(Bukkit.getWorld("build"), 615.5, 180.0, 800.5, 0F, 90F)),
-        KOTH(Location(Bukkit.getWorld("build"), 833.5, 180.0, 615.5, 90F, 90F)),
-        FOREST(Location(Bukkit.getWorld("build"), 181.5, 200.0, 300.5, -135F, 90F)),
+        SPAWN(MapLocation(559.5, 130.0, 554.5, 180F, 90F)),
+        ARENA(MapLocation(615.5, 180.0, 800.5, 0F, 90F)),
+        KOTH(MapLocation(833.5, 180.0, 615.5, 90F, 90F)),
+        FOREST(MapLocation(181.5, 200.0, 300.5, -135F, 90F)),
     }
 
     object CameraCommand {

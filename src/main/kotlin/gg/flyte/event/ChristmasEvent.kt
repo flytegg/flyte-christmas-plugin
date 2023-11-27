@@ -32,7 +32,7 @@ class ChristmasEvent : JavaPlugin() {
         worlds()
         INSTANCE = this
         SERVER = server
-        WORLD = Bukkit.getWorld("build")!!
+        WORLD = Bukkit.getWorld("world")!!
         LOBBY_SPAWN = MapLocation( 559.5, 105.5, 554.5, 170F, -5F)
 
         twilight(this)
@@ -64,7 +64,6 @@ class ChristmasEvent : JavaPlugin() {
     }
 
     private fun worlds() {
-        Bukkit.createWorld(WorldCreator("build"))
         Bukkit.createWorld(WorldCreator("tree"))
     }
 
