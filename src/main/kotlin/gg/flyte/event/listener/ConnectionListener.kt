@@ -6,7 +6,6 @@ import gg.flyte.event.util.npc.NPC
 import gg.flyte.event.visual.TablistManager
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.RemoteFile
-import gg.flyte.twilight.scheduler.async
 import gg.flyte.twilight.scheduler.delay
 import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.format.NamedTextColor
@@ -52,12 +51,10 @@ object ConnectionListener {
             joinMessage(null)
 
             player.apply {
-                async {
-                    // While in dev, get resource pack every join as hash could have changed. When finished making changes move back to class initialisation to prevent getting every join
-                    RemoteFile("https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip").apply {
-                        println("resource pack hash = $hash")
-                        setResourcePack(url, hash, true)
-                    }
+                // While in dev, get resource pack every join as hash could have changed. When finished making changes move back to class initialisation to prevent getting every join
+                RemoteFile("https://github.com/flytegg/ls-christmas-rp/releases/latest/download/RP.zip").apply {
+                    println("resource pack hash = $hash")
+                    setResourcePack(url, hash, true)
                 }
 
                 MainGameEngine.onPlayerJoin(this)
