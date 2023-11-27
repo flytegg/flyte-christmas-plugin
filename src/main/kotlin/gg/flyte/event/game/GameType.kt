@@ -68,8 +68,8 @@ enum class GameType(
         GameMode.ADVENTURE,
         KingOfTheHillGame::class.java,
         BoundingBox.of(
-            MapLocation(715, 210, 504),
-            MapLocation(943, 25, 770)
+            MapLocation(828, 101, 623),
+            MapLocation(832, 104, 627)
         ),
         listOf(
             MapLocation(811, 98, 604, -45, -5),
