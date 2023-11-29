@@ -25,11 +25,10 @@ import org.bukkit.scheduler.BukkitTask
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class MusicalMinecartsGame : MainGame() {
+class MusicalMinecartsGame : MainGame(GameType.MUSICAL_MINECARTS) {
 
     private lateinit var music: RadioSongPlayer
 
-    private val alive = mutableListOf<Player>()
     private val inMinecart = mutableListOf<Player>()
     private val minecarts = mutableListOf<Minecart>()
 
@@ -66,8 +65,6 @@ class MusicalMinecartsGame : MainGame() {
             ).build()
         )
 
-        alive.addAll(Bukkit.getOnlinePlayers())
-
         newRound()
     }
 
@@ -82,7 +79,7 @@ class MusicalMinecartsGame : MainGame() {
             Bukkit.getOnlinePlayers().applyForEach { playSound(Sound.BLOCK_NOTE_BLOCK_BASEDRUM) }
 
             // SPAWNING MINECARTS
-            val potentialSpawnLocations = GameType.MUSICAL_MINECARTS.region.getLocations(ChristmasEvent.WORLD)
+            val potentialSpawnLocations = type.region.getLocations(ChristmasEvent.WORLD)
             kotlin.repeat((alive.size * 0.66).roundToInt()) {
                 minecarts += potentialSpawnLocations.random().spawnEntity(EntityType.MINECART) as Minecart
             }
@@ -121,7 +118,7 @@ class MusicalMinecartsGame : MainGame() {
             if (inMinecart.contains(player)) {
                 points[player.uniqueId] = points.getOrDefault(player.uniqueId, 0) + 1
             } else {
-                player.teleport(GameType.MUSICAL_MINECARTS.spectatorSpawn!!)
+                player.teleport(type.spectatorSpawn!!)
                 player.playSound(Sound.ENTITY_PLAYER_DEATH)
                 iterator.remove()
             }

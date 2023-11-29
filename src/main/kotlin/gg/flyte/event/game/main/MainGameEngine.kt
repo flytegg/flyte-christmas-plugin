@@ -2,6 +2,7 @@ package gg.flyte.event.game.main
 
 import gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import gg.flyte.event.game.GameType
+import gg.flyte.event.game.TeamType
 import gg.flyte.event.game.lobby.LobbyGameEngine
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach
@@ -36,12 +37,38 @@ object MainGameEngine {
             LobbyGameEngine.stopGame(player, game)
         }
 
-        Bukkit.getOnlinePlayers().applyForEach {
-            teleport(MainGameEngine.type!!.spawns.random())
-            gameMode = MainGameEngine.type!!.gameMode
+        var teams: MutableMap<TeamType, MutableList<Player>>? = null
+        if (type!!.spawns.size > 1) {
+            teams = mutableMapOf()
+
+            val shuffledPlayers = Bukkit.getOnlinePlayers().shuffled()
+            val teamSize = shuffledPlayers.size / type!!.spawns.size
+            for ((index, spawn) in type!!.spawns.withIndex()) {
+                val startIndex = index * teamSize
+                val endIndex = (index + 1) * teamSize
+                val team = shuffledPlayers.subList(startIndex, endIndex)
+                teams[TeamType.entries[index]] = team.toMutableList()
+
+                team.applyForEach {
+                    teleport(spawn.random())
+                    gameMode = MainGameEngine.type!!.gameMode
+                }
+            }
+        } else {
+            Bukkit.getOnlinePlayers().applyForEach {
+                teleport(MainGameEngine.type!!.spawns[0].random())
+                gameMode = MainGameEngine.type!!.gameMode
+            }
         }
 
-        game = (type!!.clazz.getDeclaredConstructor().newInstance() as MainGame).apply { events() }
+        game = (type!!.clazz.getDeclaredConstructor().newInstance() as MainGame).apply {
+            alive.addAll(Bukkit.getOnlinePlayers())
+            events()
+
+            if (teams != null) {
+                (this as TeamGame).teams = teams
+            }
+        }
 
         Bukkit.broadcast(
             text().append(
@@ -113,7 +140,7 @@ object MainGameEngine {
             text().append(
                 CHAT_SPLITTER,
                 newline(),
-                text("Game ended!"),
+                text("Game ended! info about who won here"),
                 newline(),
                 CHAT_SPLITTER
             ).build()

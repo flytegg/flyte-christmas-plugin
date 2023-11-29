@@ -28,15 +28,13 @@ import org.bukkit.inventory.ItemStack
 import java.text.DecimalFormat
 import java.time.Duration
 
-class KingOfTheHillGame : MainGame() {
+class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
 
     private val RESPAWN_Y = 78
     private var GAME_SECONDS = 120
 
-    private var alive = mutableListOf<Player>()
-
     init {
-        Bukkit.getOnlinePlayers().forEach {
+        alive.forEach {
             points[it.uniqueId] = 0
         }
     }
@@ -105,7 +103,6 @@ class KingOfTheHillGame : MainGame() {
             itemMeta = meta
         }
 
-        alive.addAll(Bukkit.getOnlinePlayers())
         alive.applyForEach {
             getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
             health = 10.0
@@ -143,7 +140,7 @@ class KingOfTheHillGame : MainGame() {
                     } else {
                         player.apply {
                             health = player.health - 2
-                            teleport(GameType.KING_OF_THE_HILL.spawns[0])
+                            teleport(GameType.KING_OF_THE_HILL.spawns[0].random())
                             sendMessage("you fell, lost another life")
                         }
                     }
