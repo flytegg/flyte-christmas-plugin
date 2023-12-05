@@ -52,14 +52,6 @@ class ChristmasEvent : JavaPlugin() {
             "test"
         )*/
 
-        //
-        gg.flyte.twilight.scheduler.repeat(450,  TimeUnit.TICKS) {
-            Bukkit.getPlayer("dombogo")?.let { player ->
-                player.teleport(player.location.subtract(1.0, 0.0, 0.0))
-            }
-        }
-        //
-
         // TEST REMOVE
     }
 
