@@ -4,6 +4,7 @@ import gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.event.util.npc.NPC
 import gg.flyte.event.visual.TablistManager
+import gg.flyte.event.visual.hud.impl.ActionBarImpl
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.RemoteFile
 import gg.flyte.twilight.scheduler.delay
@@ -58,6 +59,7 @@ object ConnectionListener {
                 }
 
                 MainGameEngine.onPlayerJoin(this)
+                ActionBarImpl.register(this)
 
                 gameMode = GameMode.ADVENTURE
                 foodLevel = 20
@@ -89,6 +91,7 @@ object ConnectionListener {
 
             player.apply {
                 MainGameEngine.onPlayerQuit(this)
+                ActionBarImpl.unregister(this)
                 TablistManager.remove(this)
             }
         }
