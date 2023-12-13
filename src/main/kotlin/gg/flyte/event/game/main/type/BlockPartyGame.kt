@@ -5,6 +5,7 @@ import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer
+import gg.flyte.event.game.GameType
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.scheduler.repeat
@@ -19,7 +20,7 @@ import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.potion.PotionEffectType
 
-class BlockPartyGame : MainGame() {
+class BlockPartyGame : MainGame(GameType.MUSICAL_MINECARTS) {// CHnage to block party
 
     private val squares = listOf<Location>()
 
@@ -44,8 +45,6 @@ class BlockPartyGame : MainGame() {
 
     private lateinit var music: RadioSongPlayer
 
-    private val alive = mutableListOf<Player>()
-
     init {
 
 
@@ -66,8 +65,6 @@ class BlockPartyGame : MainGame() {
     }
 
     override fun start() {
-        alive.addAll(Bukkit.getOnlinePlayers())
-
         tasks += repeat(4, 4) {
             gameLoop()
         }
