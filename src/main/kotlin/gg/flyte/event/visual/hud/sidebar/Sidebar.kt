@@ -6,7 +6,7 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.scoreboard.DisplaySlot
 import org.bukkit.scoreboard.Scoreboard
-import java.util.UUID
+import java.util.*
 
 object Sidebar {
 
@@ -16,13 +16,15 @@ object Sidebar {
         player.scoreboard = Bukkit.getScoreboardManager().newScoreboard.apply {
             activeScoreboards[player.uniqueId] = this
 
-            registerNewObjective("sidebar", "dummy", Component
-                .text("\"Flyte Christmas Event 2023\"")
-                .color(CHRISTMAS_RED))
+            registerNewObjective(
+                "sidebar", "dummy", Component
+                    .text("\"Flyte Christmas Event 2023\"")
+                    .color(CHRISTMAS_RED)
+            )
                 .apply {
                     displaySlot = DisplaySlot.SIDEBAR
 
-            }
+                }
         }
     }
 

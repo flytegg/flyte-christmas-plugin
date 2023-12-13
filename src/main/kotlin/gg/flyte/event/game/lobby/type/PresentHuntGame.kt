@@ -16,7 +16,7 @@ class PresentHuntGame(override val player: Player) : LobbyGame() {
         private var metadataSet = false
 
         private val PRESENT_LOCATIONS = listOf(
-            MapLocation(1,1,1)
+            MapLocation(1, 1, 1)
         )
     }
 

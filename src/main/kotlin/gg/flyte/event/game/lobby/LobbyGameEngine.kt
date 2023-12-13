@@ -1,7 +1,5 @@
 package gg.flyte.event.game.lobby
 
-import gg.flyte.event.ChristmasEvent
-import gg.flyte.event.game.GameCategory
 import gg.flyte.event.game.GameType
 import gg.flyte.twilight.event.TwilightListener
 import gg.flyte.twilight.extension.applyForEach

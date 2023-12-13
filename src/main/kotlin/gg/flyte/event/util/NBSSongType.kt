@@ -1,6 +1,5 @@
 package gg.flyte.event.util
 
-import gg.flyte.event.ChristmasEvent
 import com.xxmicloxx.NoteBlockAPI.model.Song
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder
 import java.io.File

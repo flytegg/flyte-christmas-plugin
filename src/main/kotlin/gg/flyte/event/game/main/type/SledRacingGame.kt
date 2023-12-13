@@ -38,7 +38,7 @@ class SledRacingGame : MainGame(GameType.SLED_RACING) {
     private val boats = mutableMapOf<Player, Boat>()
 
     init {
-        STARTING_WALL.getBlocks(gg.flyte.event.ChristmasEvent.WORLD).applyForEach { type = Material.OAK_FENCE }
+        STARTING_WALL.getBlocks(ChristmasEvent.WORLD).applyForEach { type = Material.OAK_FENCE }
 
         Bukkit.getOnlinePlayers().forEach { player ->
             (player.world.spawnEntity(player.location, EntityType.BOAT) as Boat).apply {
@@ -62,7 +62,7 @@ class SledRacingGame : MainGame(GameType.SLED_RACING) {
     override fun start() {
         startTime = System.currentTimeMillis()
 
-        STARTING_WALL.getBlocks(gg.flyte.event.ChristmasEvent.WORLD).applyForEach { type = Material.AIR }
+        STARTING_WALL.getBlocks(ChristmasEvent.WORLD).applyForEach { type = Material.AIR }
 
         var timer = 60.0
         tasks += repeat(5) {

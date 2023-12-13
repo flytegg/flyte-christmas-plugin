@@ -1,6 +1,5 @@
 package gg.flyte.event.visual.hud.impl
 
-import gg.flyte.event.game.Game
 import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.event.visual.hud.Alignment
 import gg.flyte.event.visual.hud.Font

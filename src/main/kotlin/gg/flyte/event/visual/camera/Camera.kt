@@ -29,7 +29,8 @@ object Camera {
         @Command("camera")
         @CommandPermission("admin")
         fun camera(sender: CommandSender, location: Location, @Optional cameraPlayer: Player? = null) {
-            val player = cameraPlayer ?: Bukkit.getPlayer(UUID.fromString(CAMERA_ACCOUNT_UUID)) ?: commandError("Unable to find a camera.")
+            val player = cameraPlayer ?: Bukkit.getPlayer(UUID.fromString(CAMERA_ACCOUNT_UUID))
+            ?: commandError("Unable to find a camera.")
             sender.sendMessage("Starting camera sequence to ${location.name}.")
             player.apply {
                 gameMode = GameMode.SPECTATOR

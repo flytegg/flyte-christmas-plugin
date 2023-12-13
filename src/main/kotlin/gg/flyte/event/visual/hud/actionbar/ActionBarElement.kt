@@ -1,7 +1,7 @@
 package gg.flyte.event.visual.hud.actionbar
 
-import gg.flyte.event.visual.hud.Font
 import gg.flyte.event.visual.hud.Alignment
+import gg.flyte.event.visual.hud.Font
 
 /**
  * Represents an element in the action bar.
@@ -28,10 +28,12 @@ class ActionBarElement(val id: String, val offset: Int, var text: String, alignm
                 leftOffset = offset
                 rightOffset = -offset - width
             }
+
             Alignment.RIGHT -> {
                 leftOffset = offset - width
                 rightOffset = -offset
             }
+
             Alignment.CENTER -> {
                 leftOffset = offset - width / 2
                 rightOffset = -leftOffset - width

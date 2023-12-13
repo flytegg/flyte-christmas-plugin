@@ -19,6 +19,7 @@ object DebugCommand {
             sendMessage("Teleported to ${world.name}")
         }
     }
+
     data class WorldName(val value: String)
 
     @Subcommand("limit")

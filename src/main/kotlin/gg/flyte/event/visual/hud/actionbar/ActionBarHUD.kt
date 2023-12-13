@@ -90,14 +90,16 @@ class ActionBarHUD(private val player: Player) {
             val spaces = offset - Font.getTextWidth(truncatedText) - truncatedText.length
             println("${it.id}: $spaces")
 
-            if (offset != 0) actionBar = actionBar.append("<font:learnspigot:ui_space><lang:space.$spaces:></font>".miniMessage)
+            if (offset != 0) actionBar =
+                actionBar.append("<font:learnspigot:ui_space><lang:space.$spaces:></font>".miniMessage)
             actionBar = actionBar.append("<font:learnspigot:hud_actionbar>$editedText</font>".miniMessage)
             offset = it.rightOffset
 
             removeWidth += Font.getTextWidth(truncatedText)
         }
 
-        if (offset != 0) actionBar = actionBar.append("<font:learnspigot:ui_space><lang:space.$offset:></font>".miniMessage)
+        if (offset != 0) actionBar =
+            actionBar.append("<font:learnspigot:ui_space><lang:space.$offset:></font>".miniMessage)
         changed = false
 
         return actionBar

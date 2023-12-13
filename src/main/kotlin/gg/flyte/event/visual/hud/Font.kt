@@ -29,7 +29,7 @@ object Font {
 
         text.miniMessage.plainText.toCharArray().forEach { character ->
             width += if (!iconTranslations.any { iconTranslation -> iconTranslation.toTranslate == character.toString() }) {
-                FontInfo.entries.firstOrNull { it.character == character  }?.width ?: 0
+                FontInfo.entries.firstOrNull { it.character == character }?.width ?: 0
             } else {
                 iconTranslations.first { iconTranslation -> iconTranslation.toTranslate == character.toString() }.width
             }

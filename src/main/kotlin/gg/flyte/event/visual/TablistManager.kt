@@ -1,9 +1,9 @@
 package gg.flyte.event.visual
 
-import gg.flyte.event.ChristmasEvent
-import gg.flyte.event.util.CHRISTMAS_RED
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
+import gg.flyte.event.ChristmasEvent
+import gg.flyte.event.util.CHRISTMAS_RED
 import gg.flyte.twilight.string.smallText
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -30,7 +30,8 @@ object TablistManager {
         val property = Property(
             "textures",
             "ewogICJ0aW1lc3RhbXAiIDogMTYwNzcxNjUwMzI2OCwKICAicHJvZmlsZUlkIiA6ICJlYjIwYWVkYTRiYTM0NzVmOTczZGNmZjkzNTE2OGZhYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJTa3lGYWxsZWVlIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2IxYmI1NzdkZjg3OGU4NzY1YzhjMDZmZWVlY2Y5ODA3OTRlZWE5ODI4MDFjMjc5NWI4MjY4ZjA5MzI2MGEwZTAiCiAgICB9CiAgfQp9",
-            "s/TIW86bb1jKqnGqgaGMakBqVCQRgpsqM8MKcfULp4BRcXrMNkax1jKA121cEG1SjoPWGjH1cqMdH9KKqnHFbhE1yFDhMFKuBKRRJyGyV+DRdtbz0fDV5mGABoDHcY2u4PcQJh6pova/+IaaDn66F8xKduMET6BHuvhjrGFbX9r+ZFVUQS1EuF51EWblKvOUkDCMH6pBzbdqeXRhQfbbm6KpRttVxnNKbsxiRdDEvJ8j67JrAy6p2BTXr/gFW/BF6ktvFqLL9OQzH/cW/TScZYglvTUb1GnztxPn/PbYJlCMKL4QTEAJs1Ti7l4Uj5do4/cK/AXxsuvEqTMArvdBrwv6+AgCvFnh7PPTIRHMzTHyLmSHr1ikKtjloQgnkQVLO5gFEPnuExzAbvTZYL+F2NJN3OTQZ0KBWriIgS2futweFehKuhMoksLo056yb7coJpeaX/BAAcloRiC3IilozepdIYVnCxAw4MgW5Uy7gSoE7xBDIg2e0+24kdjA0yEpfrm9SBa9xhcpzVtH+g7zlKil4gEQhptNL7kz9iSMEMuNNFI8dLZs1jnTiscti5D/gp3BqscCX8wv4Nx2uRaQgrclxbZ4A/s81jAlbPhw5TdTZwFojFLCDDoBtpNA9zj4/YjcfXnN/3vBKmzL/2k8JPs+GAUG/5tFARpZ0yhWDgk=")
+            "s/TIW86bb1jKqnGqgaGMakBqVCQRgpsqM8MKcfULp4BRcXrMNkax1jKA121cEG1SjoPWGjH1cqMdH9KKqnHFbhE1yFDhMFKuBKRRJyGyV+DRdtbz0fDV5mGABoDHcY2u4PcQJh6pova/+IaaDn66F8xKduMET6BHuvhjrGFbX9r+ZFVUQS1EuF51EWblKvOUkDCMH6pBzbdqeXRhQfbbm6KpRttVxnNKbsxiRdDEvJ8j67JrAy6p2BTXr/gFW/BF6ktvFqLL9OQzH/cW/TScZYglvTUb1GnztxPn/PbYJlCMKL4QTEAJs1Ti7l4Uj5do4/cK/AXxsuvEqTMArvdBrwv6+AgCvFnh7PPTIRHMzTHyLmSHr1ikKtjloQgnkQVLO5gFEPnuExzAbvTZYL+F2NJN3OTQZ0KBWriIgS2futweFehKuhMoksLo056yb7coJpeaX/BAAcloRiC3IilozepdIYVnCxAw4MgW5Uy7gSoE7xBDIg2e0+24kdjA0yEpfrm9SBa9xhcpzVtH+g7zlKil4gEQhptNL7kz9iSMEMuNNFI8dLZs1jnTiscti5D/gp3BqscCX8wv4Nx2uRaQgrclxbZ4A/s81jAlbPhw5TdTZwFojFLCDDoBtpNA9zj4/YjcfXnN/3vBKmzL/2k8JPs+GAUG/5tFARpZ0yhWDgk="
+        )
 
         repeat(84) {
             val gameProfile = GameProfile(UUID.randomUUID(), "                ")
@@ -61,14 +62,27 @@ object TablistManager {
 
     private fun updateHeaderFooter() {
         Bukkit.getOnlinePlayers().forEach {
-            it.setPlayerListHeaderFooter(TAB_HEADER.replace("{players}", Bukkit.getOnlinePlayers().size.toString()), TAB_FOOTER)
+            it.setPlayerListHeaderFooter(
+                TAB_HEADER.replace("{players}", Bukkit.getOnlinePlayers().size.toString()),
+                TAB_FOOTER
+            )
         }
     }
 
     private fun sendTablist(player: Player) {
         fakePlayers.forEach {
-            (player as CraftPlayer).handle.connection.send(ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, it))
-            player.handle.connection.send(ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED, it))
+            (player as CraftPlayer).handle.connection.send(
+                ClientboundPlayerInfoUpdatePacket(
+                    ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER,
+                    it
+                )
+            )
+            player.handle.connection.send(
+                ClientboundPlayerInfoUpdatePacket(
+                    ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED,
+                    it
+                )
+            )
         }
     }
 

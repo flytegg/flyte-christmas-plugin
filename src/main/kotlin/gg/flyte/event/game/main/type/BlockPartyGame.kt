@@ -1,13 +1,12 @@
 package gg.flyte.event.game.main.type
 
-import gg.flyte.event.game.main.MainGame
-import gg.flyte.event.game.main.MainGameEngine
-import gg.flyte.event.util.NBSSongType
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode
 import com.xxmicloxx.NoteBlockAPI.songplayer.RadioSongPlayer
 import gg.flyte.event.game.GameType
+import gg.flyte.event.game.main.MainGame
+import gg.flyte.event.game.main.MainGameEngine
+import gg.flyte.event.util.NBSSongType
 import gg.flyte.twilight.event.event
-import gg.flyte.twilight.extension.applyForEach
 import gg.flyte.twilight.scheduler.repeat
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -18,7 +17,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.potion.PotionEffectType
 
 class BlockPartyGame : MainGame(GameType.MUSICAL_MINECARTS) {// CHnage to block party
 

@@ -1,9 +1,8 @@
 package gg.flyte.event.util.npc
 
-import gg.flyte.event.ChristmasEvent
-import gg.flyte.event.util.Skin
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
+import gg.flyte.event.util.Skin
 import net.minecraft.network.protocol.game.*
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
@@ -27,7 +26,8 @@ class NPC(
     location: Location,
     skin: Skin,
     followPlayer: Boolean,
-    vararg holograms: String) : BukkitRunnable() {
+    vararg holograms: String
+) : BukkitRunnable() {
 
     val serverPlayer: ServerPlayer
     val stands = mutableListOf<ArmorStand>()
@@ -108,11 +108,19 @@ class NPC(
         }
 
         if (closest != null) {
-            val location = craftPlayer.location.setDirection(closest!!.location.subtract(craftPlayer.location).toVector())
+            val location =
+                craftPlayer.location.setDirection(closest!!.location.subtract(craftPlayer.location).toVector())
             val yaw = location.yaw
             val pitch = location.pitch
             (closest as CraftPlayer).handle.connection.apply {
-                send(ClientboundMoveEntityPacket.Rot(serverPlayer.id, (yaw % 360.0 * 256 / 360).toInt().toByte(), (pitch % 360.0 * 256 / 360).toInt().toByte(), false))
+                send(
+                    ClientboundMoveEntityPacket.Rot(
+                        serverPlayer.id,
+                        (yaw % 360.0 * 256 / 360).toInt().toByte(),
+                        (pitch % 360.0 * 256 / 360).toInt().toByte(),
+                        false
+                    )
+                )
                 send(ClientboundRotateHeadPacket(serverPlayer, (yaw % 360.0 * 256 / 360).toInt().toByte()))
             }
         }

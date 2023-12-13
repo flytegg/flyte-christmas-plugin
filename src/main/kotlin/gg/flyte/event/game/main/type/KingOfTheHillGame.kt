@@ -3,9 +3,11 @@ package gg.flyte.event.game.main.type
 import gg.flyte.event.game.GameType
 import gg.flyte.event.game.main.MainGame
 import gg.flyte.event.game.main.MainGameEngine
-import gg.flyte.event.game.main.MainGameEngine.points
 import gg.flyte.twilight.event.event
-import gg.flyte.twilight.extension.*
+import gg.flyte.twilight.extension.applyForEach
+import gg.flyte.twilight.extension.clearActionBar
+import gg.flyte.twilight.extension.contains
+import gg.flyte.twilight.extension.playSound
 import gg.flyte.twilight.scheduler.repeat
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.text
@@ -76,20 +78,27 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
 
             onHill[0].apply {
                 val newPoints = points[uniqueId]!! + 50
-                sendActionBar(text().append(
-                    text("${df.format(newPoints / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
-                    text(" | ").color(NamedTextColor.GRAY),
-                    text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
-                ).build())
+                sendActionBar(
+                    text().append(
+                        text("${df.format(newPoints / 1000.0)}s held").color(NamedTextColor.GREEN)
+                            .decorate(TextDecoration.BOLD),
+                        text(" | ").color(NamedTextColor.GRAY),
+                        text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(
+                            NamedTextColor.DARK_AQUA
+                        ).decorate(TextDecoration.BOLD)
+                    ).build()
+                )
                 points[uniqueId] = newPoints
             }
         } else if (onHill.size > 1) {
             Bukkit.getOnlinePlayers().applyForEach {
-                showTitle(Title.title(
-                    text("CONTESTED!").color(NamedTextColor.RED),
-                    Component.empty(),
-                    Title.Times.times(Duration.ZERO, Duration.ofSeconds(2), Duration.ZERO)
-                ))
+                showTitle(
+                    Title.title(
+                        text("CONTESTED!").color(NamedTextColor.RED),
+                        Component.empty(),
+                        Title.Times.times(Duration.ZERO, Duration.ofSeconds(2), Duration.ZERO)
+                    )
+                )
             }
         }
     }
@@ -104,7 +113,7 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
         }
 
         alive.applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0;
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0
             health = 10.0
             inventory.addItem(knockbackStick)
         }
@@ -124,7 +133,7 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
                             world.strikeLightning(player.location)
                             teleport(GameType.KING_OF_THE_HILL.spectatorSpawn!!)
                             playSound(Sound.ENTITY_PLAYER_DEATH)
-                            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+                            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
                             health = 20.0
                             resetTitle()
                             clearActionBar()
@@ -133,7 +142,7 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
                         Bukkit.broadcastMessage("${player.name} was elmimnated")
 
                         if (alive.size == 1) {
-                            Bukkit.broadcastMessage("game ended, ${alive[0]!!.name} last man standing")
+                            Bukkit.broadcastMessage("game ended, ${alive[0].name} last man standing")
                             MainGameEngine.stop()
                             return@repeat
                         }
@@ -156,11 +165,16 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
             }
 
             Bukkit.getOnlinePlayers().applyForEach {
-                sendActionBar(text().append(
-                    text("${df.format(points[uniqueId]!! / 1000.0)}s held").color(NamedTextColor.GREEN).decorate(TextDecoration.BOLD),
-                    text(" | ").color(NamedTextColor.GRAY),
-                    text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD)
-                ).build())
+                sendActionBar(
+                    text().append(
+                        text("${df.format(points[uniqueId]!! / 1000.0)}s held").color(NamedTextColor.GREEN)
+                            .decorate(TextDecoration.BOLD),
+                        text(" | ").color(NamedTextColor.GRAY),
+                        text("$GAME_SECONDS second" + (if (GAME_SECONDS == 1) "" else "s") + " left").color(
+                            NamedTextColor.DARK_AQUA
+                        ).decorate(TextDecoration.BOLD)
+                    ).build()
+                )
             }
 
             GAME_SECONDS--
@@ -169,7 +183,7 @@ class KingOfTheHillGame : MainGame(GameType.KING_OF_THE_HILL) {
 
     override fun stop() {
         Bukkit.getOnlinePlayers().applyForEach {
-            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0;
+            getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
             health = 20.0
             inventory.storageContents = emptyArray()
             resetTitle()
