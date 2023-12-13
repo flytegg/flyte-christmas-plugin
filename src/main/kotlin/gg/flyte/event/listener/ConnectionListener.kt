@@ -82,7 +82,7 @@ object ConnectionListener {
                 gameMode = GameMode.ADVENTURE
                 foodLevel = 20
                 teleport(LOBBY_SPAWN)
-                getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.baseValue = 20.0;
+                getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.baseValue = 20.0
                 health = 20.0
 
                 inventory.clear()
