@@ -4,11 +4,9 @@ import gg.flyte.event.listener.ConnectionListener
 import gg.flyte.event.listener.MapListener
 import gg.flyte.event.util.CommandManager
 import gg.flyte.event.util.MapLocation
-
 import gg.flyte.event.util.npc.NPCListener
 import gg.flyte.twilight.event.custom.admin.listener.OpEventListener
 import gg.flyte.twilight.event.disableCustomEventListeners
-import gg.flyte.twilight.time.TimeUnit
 import gg.flyte.twilight.twilight
 import org.bukkit.*
 import org.bukkit.plugin.java.JavaPlugin
@@ -27,7 +25,7 @@ class ChristmasEvent : JavaPlugin() {
         INSTANCE = this
         SERVER = server
         WORLD = Bukkit.getWorld("world")!!
-        LOBBY_SPAWN = MapLocation( 559.5, 105.5, 554.5, 170F, -5F)
+        LOBBY_SPAWN = MapLocation(559.5, 105.5, 554.5, 170F, -5F)
 
         twilight(this)
         disableCustomEventListeners(OpEventListener)

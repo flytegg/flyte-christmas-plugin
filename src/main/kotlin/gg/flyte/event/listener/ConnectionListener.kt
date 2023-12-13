@@ -19,15 +19,9 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
-import org.bukkit.event.player.PlayerJoinEvent
-import org.bukkit.event.player.PlayerKickEvent
-import org.bukkit.event.player.PlayerLoginEvent
-import org.bukkit.event.player.PlayerQuitEvent
-import org.bukkit.event.player.PlayerResourcePackStatusEvent
+import org.bukkit.event.player.*
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
-import org.bukkit.potion.PotionEffect
-import org.bukkit.potion.PotionEffectType
 
 object ConnectionListener {
 
@@ -58,14 +52,16 @@ object ConnectionListener {
         event<PlayerLoginEvent> {
             if (player.canBypassPlayerLimit()) return@event
             if (ChristmasEvent.SERVER.onlinePlayers.size < playerLimit) return@event
-            disallow(PlayerLoginEvent.Result.KICK_FULL, text().append(
-                text("Sorry, the event is currently full.", CHRISTMAS_RED),
-                newline(),
-                newline(),
-                text("You can still join the fun over at", NamedTextColor.WHITE),
-                newline(),
-                text("twitch.tv/flytelabs", CHRISTMAS_RED)
-            ).build())
+            disallow(
+                PlayerLoginEvent.Result.KICK_FULL, text().append(
+                    text("Sorry, the event is currently full.", CHRISTMAS_RED),
+                    newline(),
+                    newline(),
+                    text("You can still join the fun over at", NamedTextColor.WHITE),
+                    newline(),
+                    text("twitch.tv/flytelabs", CHRISTMAS_RED)
+                ).build()
+            )
         }
 
         event<PlayerJoinEvent> {
