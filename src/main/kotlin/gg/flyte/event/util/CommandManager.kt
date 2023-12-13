@@ -1,4 +1,4 @@
-package gg.flyte.event
+package gg.flyte.event.util
 
 import gg.flyte.event.debug.DebugCommand
 import gg.flyte.event.game.GameCommand
