@@ -43,42 +43,6 @@ enum class GameType(
         MapLocation(635, 112, 828, 145, 0)
     ),
 
-    MUSICAL_MINECARTS(
-        GameCategory.MAIN,
-        Component.text("Musical Minecarts"),
-        Component.text("test game"),
-        GameMode.ADVENTURE,
-        MusicalMinecartsGame::class.java,
-        BoundingBox.of(
-            MapLocation(633, 126, 783),
-            MapLocation(599, 126, 817)
-        ),
-        listOf(
-            listOf(
-                MapLocation(616, 111, 800)
-            )
-        ),
-        MapLocation(635, 112, 828, 145, 0)
-    ),
-
-    SLED_RACING(
-        GameCategory.MAIN,
-        Component.text("Sled Racing"),
-        Component.text("test game2"),
-        GameMode.ADVENTURE,
-        SledRacingGame::class.java,
-        BoundingBox.of(
-            MapLocation(-133, 83, 95),
-            MapLocation(-174, 79, 103)
-        ),
-        listOf(
-            listOf(
-                MapLocation(-133, 80, 100, 90, 0)
-            )
-        ),
-        MapLocation(-151, 80, 92)
-    ),
-
     KING_OF_THE_HILL(
         GameCategory.MAIN,
         Component.text("King Of The Hill"),
@@ -102,6 +66,42 @@ enum class GameType(
             )
         ),
         MapLocation(731, 142, 528, -45, 15)
+    ),
+
+    MUSICAL_MINECARTS(
+        GameCategory.MAIN,
+        Component.text("Musical Minecarts"),
+        Component.text("test game"),
+        GameMode.ADVENTURE,
+        MusicalMinecartsGame::class.java,
+        BoundingBox.of(
+            MapLocation(633, 126, 783),
+            MapLocation(599, 126, 817)
+        ),
+        listOf(
+            listOf(
+                MapLocation(616, 111, 800)
+            )
+        ),
+        MapLocation(635, 112, 828, 145, 0)
+    ),
+
+    PASS_THE_PARCEL(
+        GameCategory.MAIN,
+        Component.text("Pass the Parcel"),
+        Component.text("test game"),
+        GameMode.ADVENTURE,
+        PassTheParcelGame::class.java,
+        BoundingBox.of(
+            MapLocation(633, 126, 783),
+            MapLocation(599, 126, 817)
+        ),
+        listOf(
+            listOf(
+                MapLocation(616, 111, 800)
+            )
+        ),
+        MapLocation(635, 112, 828, 145, 0)
     ),
 
     PRESENT_SNATCH(
@@ -129,6 +129,24 @@ enum class GameType(
             ),
         ),
         MapLocation(0, 0, 0)
+    ),
+
+    SLED_RACING(
+        GameCategory.MAIN,
+        Component.text("Sled Racing"),
+        Component.text("test game2"),
+        GameMode.ADVENTURE,
+        SledRacingGame::class.java,
+        BoundingBox.of(
+            MapLocation(-133, 83, 95),
+            MapLocation(-174, 79, 103)
+        ),
+        listOf(
+            listOf(
+                MapLocation(-133, 80, 100, 90, 0)
+            )
+        ),
+        MapLocation(-151, 80, 92)
     ),
 
 
