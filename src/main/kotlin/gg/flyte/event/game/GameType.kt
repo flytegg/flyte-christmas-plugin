@@ -1,10 +1,7 @@
 package gg.flyte.event.game
 
 import gg.flyte.event.game.lobby.type.PresentHuntGame
-import gg.flyte.event.game.main.type.KingOfTheHillGame
-import gg.flyte.event.game.main.type.MusicalMinecartsGame
-import gg.flyte.event.game.main.type.PresentSnatchGame
-import gg.flyte.event.game.main.type.SledRacingGame
+import gg.flyte.event.game.main.type.*
 import gg.flyte.event.util.MapLocation
 import net.kyori.adventure.text.Component
 import org.bukkit.GameMode
@@ -27,6 +24,24 @@ enum class GameType(
 ) {
 
     // MAIN GAMES
+
+    BLOCK_PARTY(
+        GameCategory.MAIN,
+        Component.text("Block Party"),
+        Component.text("test game"),
+        GameMode.ADVENTURE,
+        BlockPartyGame::class.java,
+        BoundingBox.of(
+            MapLocation(633, 126, 783),
+            MapLocation(599, 126, 817)
+        ),
+        listOf(
+            listOf(
+                MapLocation(616, 111, 800)
+            )
+        ),
+        MapLocation(635, 112, 828, 145, 0)
+    ),
 
     MUSICAL_MINECARTS(
         GameCategory.MAIN,

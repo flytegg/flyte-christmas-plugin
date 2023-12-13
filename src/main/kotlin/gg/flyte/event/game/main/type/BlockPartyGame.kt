@@ -18,7 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
 
-class BlockPartyGame : MainGame(GameType.MUSICAL_MINECARTS) {// CHnage to block party
+class BlockPartyGame : MainGame(GameType.BLOCK_PARTY) {
 
     private val squares = listOf<Location>()
 
