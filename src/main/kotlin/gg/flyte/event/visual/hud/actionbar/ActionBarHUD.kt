@@ -88,7 +88,7 @@ class ActionBarHUD(private val player: Player) {
 
             val truncatedText = it.text.dropLast(2)
             val spaces = offset - Font.getTextWidth(truncatedText) - truncatedText.length
-            println("${it.id}: $spaces")
+            // println("${it.id}: $spaces")
 
             if (offset != 0) actionBar =
                 actionBar.append("<font:learnspigot:ui_space><lang:space.$spaces:></font>".miniMessage)
