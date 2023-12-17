@@ -4,11 +4,14 @@ import gg.flyte.event.ChristmasEvent
 import gg.flyte.event.ChristmasEvent.Companion.LOBBY_SPAWN
 import gg.flyte.event.game.main.MainGameEngine
 import gg.flyte.event.util.CHRISTMAS_RED
+import gg.flyte.event.util.Scoreboard
 import gg.flyte.event.util.npc.NPC
 import gg.flyte.event.visual.TablistManager
 import gg.flyte.event.visual.hud.impl.ActionBarImpl
 import gg.flyte.twilight.event.event
 import gg.flyte.twilight.extension.RemoteFile
+import gg.flyte.twilight.extension.applyForEach
+import gg.flyte.twilight.extension.removeActivePotionEffects
 import gg.flyte.twilight.scheduler.delay
 import net.kyori.adventure.text.Component.newline
 import net.kyori.adventure.text.Component.text
@@ -75,13 +78,19 @@ object ConnectionListener {
                 }
 
                 MainGameEngine.onPlayerJoin(this)
-                ActionBarImpl.register(this)
+                Scoreboard.onPlayerJoin(this)
+                // ActionBarImpl.register(this)
 
-                gameMode = GameMode.ADVENTURE
-                foodLevel = 20
                 teleport(LOBBY_SPAWN)
+
                 getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.baseValue = 20.0
                 health = 20.0
+                foodLevel = 20
+                fireTicks = 0
+
+                gameMode = GameMode.ADVENTURE
+
+                removeActivePotionEffects()
 
                 inventory.clear()
                 inventory.helmet = RED_CHRISTMAS_HAT
@@ -106,8 +115,9 @@ object ConnectionListener {
 
             player.apply {
                 MainGameEngine.onPlayerQuit(this)
-                ActionBarImpl.unregister(this)
+                //ActionBarImpl.unregister(this)
                 TablistManager.remove(this)
+                Scoreboard.onPlayerQuit(this)
             }
         }
 

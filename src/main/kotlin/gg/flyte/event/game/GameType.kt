@@ -104,6 +104,24 @@ enum class GameType(
         MapLocation(635, 112, 828, 145, 0)
     ),
 
+    SPLEEF(
+        GameCategory.MAIN,
+        Component.text("Spleef"),
+        Component.text("test game"),
+        GameMode.ADVENTURE,
+        SpleefGame::class.java,
+        BoundingBox.of(
+            MapLocation(633, 110, 783),
+            MapLocation(599, 110, 817)
+        ),
+        listOf(
+            listOf(
+                MapLocation(616, 111, 800)
+            )
+        ),
+        MapLocation(635, 112, 828, 145, 0)
+    ),
+
     PRESENT_SNATCH(
         GameCategory.MAIN,
         Component.text("Present Snatch"),
